@@ -1,0 +1,39 @@
+{
+  "mani": {
+    "username": "mani",
+    "password": "Manikumar070",
+    "database": "dev_mani_online_sastry",
+    "host": "139.59.77.171",
+    "dialect": "mysql"
+  },
+  "manju": {
+    "username": "manju",
+    "password": "Manikumar070",
+    "database": "dev_manju_online_sastry",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "development": {
+    "username": "mani",
+    "password": "Manikumar070",
+    "database": "dev_mani_online_sastry",
+    "host": "139.59.77.171",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  }
+}
