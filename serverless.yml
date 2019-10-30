@@ -78,6 +78,14 @@ functions:
           path: pujas/{id}
           authorizer: aws_iam
           cors: true
+  createCustomer:
+    handler: functions/index.createCustomer
+    events:
+      - http:
+          method: get
+          path: pujas/{id}
+          authorizer: aws_iam
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
