@@ -1,6 +1,6 @@
 
 
-service: serverless_online_sastry # NOTE: update this with your service name
+service: serverless-online-sastry1 # NOTE: update this with your service name
 
 plugins:
   - serverless-dotenv-plugin
@@ -10,8 +10,15 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs10.x #supports upto node 10 max
+  timeout: 20
+  stage: dev
+  region: us-east-1
 
+custom:
+  # Our stage is based on what is passed in when running serverless
+  # commands. Or fallsback to what we have set in the provider section.
+  stage: ${opt:stage, self:provider.stage}
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -47,17 +54,7 @@ provider:
 environment:
   stripeSecretKey: ${env:STRIPE_SECRET_KEY}
 
-iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:DescribeTable
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:us-east-1:*:*"
+
 
 functions:
   hello:
@@ -68,7 +65,6 @@ functions:
       - http:
           method: get
           path: pujas
-          authorizer: aws_iam
           cors: true
   getPuja:
     handler: functions/index.getPujaById
@@ -76,15 +72,20 @@ functions:
       - http:
           method: get
           path: pujas/{id}
-          authorizer: aws_iam
           cors: true
   createCustomer:
     handler: functions/index.createCustomer
     events:
       - http:
           method: get
-          path: pujas/{id}
-          authorizer: aws_iam
+          path: payment
+          cors: true
+  payment:
+    handler: functions/index.payment
+    events:
+      - http:
+          method: post
+          path: payment
           cors: true
 
 #    The following are a few example events you can configure
@@ -122,6 +123,15 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
+# Create our resources with separate CloudFormation templates
+resources:
+  # API Gateway Errors
+  - ${file(resources/api-gateway-errors.yml)}
+  # S3
+  - ${file(resources/s3-bucket.yml)}
+  # Cognito
+  - ${file(resources/cognito-user-pool.yml)}
+  - ${file(resources/cognito-identity-pool.yml)}
 #resources:
 #  Resources:
 #    NewResource:

@@ -1,8 +1,16 @@
 const dbModels = require('../../models')
+const helpers = require("../../utils/helpers");
 
 module.exports = async (event, context, callback) => {
-  const x = await dbModels.Puja
-    .findAll();
-  callback(null, x)
+  try {
+    const x = await dbModels.Puja
+      .findAll();
+    console.log("pujas", x)
+    return helpers.success({ data: x });
+    callback(null, x)
+  } catch (error) {
+    return helpers.failure({ message: error.message });
+  }
+
 
 };

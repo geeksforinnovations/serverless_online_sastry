@@ -53,3 +53,62 @@ GRANT ALL PRIVILEGES ON *.* TO 'manju'@'%' IDENTIFIED BY 'Manikumar070' WITH GRA
 FLUSH PRIVILEGES;
 exit
 service mysql restart
+
+
+FYI:
+
+AWS_REGION=us-east-1
+AUTH0_CLIENT_ID=abc12345
+AUTH0_CLIENT_SECRET=12345xyz
+
+the above keys should not use in .env as these are predefined keys in lambda
+
+
+npx sequelize [command]
+
+Commands:
+  sequelize db:migrate                        Run pending migrations
+  sequelize db:migrate:schema:timestamps:add  Update migration table to have timestamps
+  sequelize db:migrate:status                 List the status of all migrations
+  sequelize db:migrate:undo                   Reverts a migration
+  sequelize db:migrate:undo:all               Revert all migrations ran
+  sequelize db:seed                           Run specified seeder
+  sequelize db:seed:undo                      Deletes data from the database
+  sequelize db:seed:all                       Run every seeder
+  sequelize db:seed:undo:all                  Deletes data from the database
+  sequelize db:create                         Create database specified by configuration
+  sequelize db:drop                           Drop database specified by configuration
+  sequelize init                              Initializes project
+  sequelize init:config                       Initializes configuration
+  sequelize init:migrations                   Initializes migrations
+  sequelize init:models                       Initializes models
+  sequelize init:seeders                      Initializes seeders
+  sequelize migration:generate                Generates a new migration file       [aliases: migration:create]
+  sequelize model:generate                    Generates a model and its migration  [aliases: model:create]
+  sequelize seed:generate                     Generates a new seed file            [aliases: seed:create]
+
+
+serverless invoke local --function payment --path mocks/billing-event.json
+
+with particular profile
+
+serverless deploy --aws-profile myProfile
+
+serverless deploy function -f list
+
+
+
+  npx aws-api-gateway-cli-test \
+--username='mani@example.com' \
+--password='Passw0rd!' \
+--user-pool-id='us-east-1_Us1T5AZvU' \
+--app-client-id='6nu10vhcmmjrrgsjkru8ascbb3' \
+--cognito-region='us-east-1' \
+--identity-pool-id='us-east-1:742ea873-7f56-48a2-830f-264292725b98' \
+--invoke-url='https://e93ownwzgl.execute-api.us-east-1.amazonaws.com/dev/pujas/' \
+--api-gateway-region='us-east-1' \
+--method='GET' \
+--path-template='/notes' \
+--body='{"content":"hello world","attachment":"hello.jpg"}'
+
+npx aws-api-gateway-cli-test --username mani@example.com --password Passw0rd! --user-pool-id us-east-1_Us1T5AZvU --app-client-id 6nu10vhcmmjrrgsjkru8ascbb3 --cognito-region us-east-1 --identity-pool-id us-east-1:742ea873-7f56-48a2-830f-264292725b98 --invoke-url https://e93ownwzgl.execute-api.us-east-1.amazonaws.com/dev/pujas/ --api-gateway-region us-east-1 --path-template /notes --method GET --body "{\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}"
