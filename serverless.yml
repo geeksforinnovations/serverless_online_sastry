@@ -1,25 +1,16 @@
-# Welcome to Serverless!
-#
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
-#
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
 
-service: serverless_test1 # NOTE: update this with your service name
 
+service: serverless_online_sastry # NOTE: update this with your service name
+
+plugins:
+  - serverless-dotenv-plugin
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
 
 # you can overwrite defaults here
 #  stage: dev
@@ -53,10 +44,40 @@ provider:
 #  exclude:
 #    - exclude-me.js
 #    - exclude-me-dir/**
+environment:
+  stripeSecretKey: ${env:STRIPE_SECRET_KEY}
+
+iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:*:*"
 
 functions:
   hello:
     handler: handler.hello
+  getAllPujas:
+    handler: functions/index.readAllPujas
+    events:
+      - http:
+          method: get
+          path: pujas
+          authorizer: aws_iam
+          cors: true
+  getPuja:
+    handler: functions/index.getPujaById
+    events:
+      - http:
+          method: get
+          path: pujas/{id}
+          authorizer: aws_iam
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

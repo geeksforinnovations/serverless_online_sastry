@@ -1,0 +1,20 @@
+{
+  "name": "serverless-online-sastry",
+  "version": "1.0.0",
+  "description": "Serverless webpack example using Typescript",
+  "main": "handler.js",
+  "scripts": {
+    "debug": "export SLS_DEBUG=* && node --debug ./node_modules/.bin/serverless offline -s dev"
+  },
+  "dependencies": {
+    "mysql2": "^2.0.0",
+    "sequelize": "^5.21.1",
+    "stripe": "^7.10.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^5.5.1",
+    "serverless-dotenv-plugin": "^2.1.1"
+  },
+  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "license": "MIT"
+}
