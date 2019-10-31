@@ -7,7 +7,7 @@ module.exports = async (event, context, callback) => {
     const createdPuja = await dbModels.Puja
       .create({name:puja.name,description:puja.description,about:puja.about,timeInHrs:puja.timeInHrs,requiredThings:puja.requiredThings});
     return helpers.success({ data:  createdPuja});
-    callback(null, x)
+    //callback(null, x)
   } catch (error) {
     return helpers.failure({ message: error.message });
   }

@@ -92,21 +92,21 @@ functions:
     events:
       - http:
           method: post
-          path: createPuja
+          path: pujas
           cors: true
   UpdatePuja:
     handler: functions/index.UpdatePuja
     events:
       - http:
-          method: post
-          path: createPuja
+          method: patch
+          path: pujas
           cors: true
   DeletePuja:
     handler: functions/index.deletePuja
     events:
       - http:
-          method: get
-          path: deletePuja/{id}
+          method: delete
+          path: pujas/{id}
           cors: true
 
 #    The following are a few example events you can configure
