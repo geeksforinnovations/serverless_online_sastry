@@ -94,6 +94,20 @@ functions:
           method: post
           path: createPuja
           cors: true
+  UpdatePuja:
+    handler: functions/index.UpdatePuja
+    events:
+      - http:
+          method: post
+          path: createPuja
+          cors: true
+  DeletePuja:
+    handler: functions/index.deletePuja
+    events:
+      - http:
+          method: get
+          path: deletePuja/{id}
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
