@@ -94,14 +94,14 @@ functions:
           method: post
           path: pujas
           cors: true
-  UpdatePuja:
-    handler: functions/index.UpdatePuja
+  updatePuja:
+    handler: functions/index.updatePuja
     events:
       - http:
           method: patch
           path: pujas
           cors: true
-  DeletePuja:
+  deletePuja:
     handler: functions/index.deletePuja
     events:
       - http:

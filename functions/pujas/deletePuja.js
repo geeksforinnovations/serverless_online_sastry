@@ -3,12 +3,10 @@ const helpers = require("../../utils/helpers");
 
 module.exports = async (event, context, callback) => {
     try {
-       var delObj = JSON.parse(event.queryStringParameters);
         const isDeleted = await dbModels.Puja
-            .destroy({ where: { id: delObj.id } });
+            .destroy({ where: { id: event.pathParameters.id } });
         return helpers.success({ data: isDeleted });
     } catch (error) {
-        return helpers.failure({ message: error.message
-         });
+        return helpers.failure({message: error.message});
     }
 };
