@@ -1,18 +1,20 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const helpers = require("../../utils/helpers");
+const dbModels = require('../../models')
 
 module.exports = async (event, context) => {
-    const body = JSON.parse(event.body);
-    const storage = body.storage;
-    const source = body.source
-    const amount = helpers.calculateCost(storage);
-    const description = "Scratch charge";
-
+   // const body = JSON.parse(event.body);
+    const pujaId = body.pujaId;
+    const source =  body.source
+    const description = "Puja charge";
 
     try {
+        const selectedPuja = await dbModels.Puja.findOne({ where: { id: pujaId } });
+        const description = "charges for " + selectedPuja.name + ".";
+       
         const customer = await stripe.charges.create({
             source,
-            amount,
+            amount: selectedPuja.price ? selectedPuja.price : '1000',
             description,
             currency: "usd"
         });
