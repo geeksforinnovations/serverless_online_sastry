@@ -9,7 +9,8 @@
   "dependencies": {
     "mysql2": "^2.0.0",
     "sequelize": "^5.21.1",
-    "stripe": "^7.10.0"
+    "stripe": "^7.10.0",
+    "validator": "^12.0.0"
   },
   "devDependencies": {
     "sequelize-cli": "^5.5.1",
