@@ -24,10 +24,31 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         isFloat: {
-          msg: 'TimeInHrs should be float'
+          msg: 'Please enter valid value for time in hrs.'
         },
         notNull: {
           msg: "TimeInHrs can't be empty."
+        }
+      }
+    },
+    cost: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      validate: {
+        isFloat: {
+          msg: 'Please enter valid value for cost.'
+        },
+        notNull: {
+          msg: "Cost can't be empty."
+        }
+      }
+    },
+    avialableLanguages: {
+      type: DataTypes.JSON,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Available languages can't be null."
         }
       }
     },

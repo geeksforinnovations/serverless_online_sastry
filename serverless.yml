@@ -108,7 +108,43 @@ functions:
           method: delete
           path: pujas/{id}
           cors: true
-
+  getFaq:
+    handler: functions/index.getFaqById
+    events:
+      - http:
+          method: get
+          path: faqs/{id}
+          cors: true
+  getAllFaqs:
+    handler: functions/index.readAllFaqs
+    events:
+      - http:
+          method: get
+          path: faqs
+          cors: true
+  createFaq:
+    handler: functions/index.createFaq
+    events:
+      - http:
+          method: post
+          path: faqs
+          cors: true
+  updateFaq:
+    handler: functions/index.updateFaq
+    events:
+      - http:
+          method: patch
+          path: faqs
+          cors: true
+  deleteFaq:
+    handler: functions/index.deleteFaq
+    events:
+      - http:
+          method: delete
+          path: faqs/{id}
+          cors: true
+  
+         
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
