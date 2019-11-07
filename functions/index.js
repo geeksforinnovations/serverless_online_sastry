@@ -12,6 +12,11 @@ const updateFaq = require('./FAQS/updateFaq')
 const deleteFaq = require('./FAQS/deleteFaq')
 const readAllFaqs = require('./FAQS/getAllFaqs')
 const getFaqById = require('./FAQS/getFaqById')
+const createBooking = require('./Booking/createBooking')
+const deleteBooking = require('./Booking/deleteBooking')
+const getAllBookings = require('./Booking/getAllBookings')
+const getBookingsByPhoneNumber = require('./Booking/getBookingsByPhoneNumber')
+
 
 module.exports = {
     readAllPujas: readAllPujas,
@@ -26,4 +31,8 @@ module.exports = {
     deleteFaq:deleteFaq,
     readAllFaqs: readAllFaqs,
     getFaqById: getFaqById,
+    createBooking:createBooking,
+    deleteBooking:deleteBooking,
+    getAllBookings:getAllBookings,
+    getBookingsByPhoneNumber:getBookingsByPhoneNumber
 }

@@ -143,6 +143,34 @@ functions:
           method: delete
           path: faqs/{id}
           cors: true
+  createBooking:
+    handler: functions/index.createBooking
+    events:
+      - http:
+          method: post
+          path: Booking
+          cors: true
+  getAllBookings:
+    handler: functions/index.getAllBookings
+    events:
+      - http:
+          method: get
+          path: Booking
+          cors: true
+  getBookingsByPhoneNumber:
+    handler: functions/index.getBookingsByPhoneNumber
+    events:
+      - http:
+          method: get
+          path: Booking/{phoneNumber}
+          cors: true
+  deleteBooking:
+    handler: functions/index.deleteBooking
+    events:
+      - http:
+          method: delete
+          path: Booking/{id}
+          cors: true
   
          
 #    The following are a few example events you can configure
