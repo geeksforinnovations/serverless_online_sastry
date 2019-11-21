@@ -171,6 +171,13 @@ functions:
           method: delete
           path: Booking/{id}
           cors: true
+  searchPuja:
+    handler: functions/index.searchPuja
+    events:
+      - http:
+          method: get
+          path: searchPuja
+          cors: true
   
          
 #    The following are a few example events you can configure
