@@ -1,6 +1,6 @@
 
 
-service: serverless-online-sastry1 # NOTE: update this with your service name
+service: sls-online-sastry-g # NOTE: update this with your service name
 
 plugins:
   - serverless-dotenv-plugin
@@ -162,7 +162,7 @@ functions:
     events:
       - http:
           method: get
-          path: Booking/{phoneNumber}
+          path: Booking/{id}
           cors: true
   deleteBooking:
     handler: functions/index.deleteBooking
