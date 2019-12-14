@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    LanguageId: {
+    languageId: {
         type: DataTypes.NUMBER,
         allowNull: false,
         validate: {

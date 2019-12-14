@@ -5,49 +5,49 @@ const Sequelize = require('sequelize');
 module.exports = async (event, context, callback) => {
   try {
 
-  const queryParams = JSON.parse(event.body);
- //const queryParams ={pujaname:'',pujatype:null,languagename:'tel'}
+    const queryParams = JSON.parse(event.body);
+    //const queryParams ={pujaname:'',pujatype:null,languagename:'tel'}
 
-  const pujas = await dbModels.Puja.findAll({
-    required: true,
-    where:
-    {
-      [Sequelize.Op.and]: {
-        name: {
-          [Sequelize.Op.like]: (queryParams.pujaname == null? '%': '%'+queryParams.pujaname+'%')
-        },
-        pujaType: {
-          [Sequelize.Op.like]:  (queryParams.pujatype == null? '%': '%'+queryParams.pujatype+'%')
-        }
-      }
-    },
-    include: [
+    const pujas = await dbModels.Puja.findAll({
+      required: true,
+      where:
       {
-        model: dbModels.PujaLanguage,
-        attributes: ['pujaid', 'LanguageId'],
-        required: true,
-        include: [
-          {
-            model: dbModels.Language,
-            attributes: ['name'],
-            where:
-         {
-      [Sequelize.Op.and]: {
-        name: {
-          [Sequelize.Op.like]: (queryParams.languagename == null? '%': '%'+queryParams.languagename+'%')
+        [Sequelize.Op.and]: {
+          name: {
+            [Sequelize.Op.like]: (queryParams.pujaname == null ? '%' : '%' + queryParams.pujaname + '%')
+          },
+          pujaType: {
+            [Sequelize.Op.like]: (queryParams.pujatype == null ? '%' : '%' + queryParams.pujatype + '%')
+          }
         }
-      }
-    },
-          }],
-         // where:whereCondtion
+      },
+      include: [
+        {
+          model: dbModels.PujaLanguage,
+          attributes: ['pujaid', 'languageId'],
+          required: true,
+          include: [
+            {
+              model: dbModels.Language,
+              attributes: ['name'],
+              where:
+              {
+                [Sequelize.Op.and]: {
+                  name: {
+                    [Sequelize.Op.like]: (queryParams.languagename == null ? '%' : '%' + queryParams.languagename + '%')
+                  }
+                }
+              },
+            }],
+          // where:whereCondtion
 
-      }
-    ]
-  });
-  return helpers.success({ data: pujas });
-} catch (error) {
-  return helpers.failure({ message: error.message });
-}
+        }
+      ]
+    });
+    return helpers.success({ data: pujas });
+  } catch (error) {
+    return helpers.failure({ message: error.message });
+  }
 }
 
 

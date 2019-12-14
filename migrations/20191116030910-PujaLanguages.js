@@ -11,7 +11,7 @@ module.exports = {
       pujaid:{
         type: Sequelize.INTEGER
       },
-      pujalanguageid:{
+      languageId:{
         type: Sequelize.INTEGER
       },
       createdAt: {
