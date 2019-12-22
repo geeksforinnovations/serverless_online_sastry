@@ -13,6 +13,7 @@ module.exports = {
       },
       languageId:{
         type: Sequelize.INTEGER
+
       },
       createdAt: {
         allowNull: false,
