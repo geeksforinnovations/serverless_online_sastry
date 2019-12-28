@@ -5,7 +5,6 @@ const helpers = require("../../utils/helpers");
 module.exports = async (event, context, callback) => {
   try {
     const puja = JSON.parse(event.body);
-
     let pujaLanguages=[];
     //  const puja = {id:0,name:'Test',description:'Test',about:'Test',
     //   timeInHrs:4
