@@ -6,6 +6,11 @@ module.exports = async (event, context, callback) => {
   try {
     const puja = JSON.parse(event.body);
 
+    let pujaLanguages=[];
+    //  const puja = {id:0,name:'Test',description:'Test',about:'Test',
+    //   timeInHrs:4
+    //   ,requiredThings:'',
+    //   pujaType:'Offline',cost:10000,pujaLanguageIds:[1,2,3],imageId:'test'}
 
     const Languages = dbModels.Puja.hasMany(dbModels.PujaLanguage, { as: 'languages', foreignKey: 'pujaid' });
     if (puja.pujaLanguageIds != null && Array.isArray(puja.pujaLanguageIds))
@@ -17,7 +22,7 @@ module.exports = async (event, context, callback) => {
         name: puja.name, description: puja.description, about: puja.about,
         timeInHrs: puja.timeInHrs, requiredThings: puja.requiredThings,
         pujaType: puja.pujaType, cost: puja.cost,
-        languages: pujaLanguages
+        languages: pujaLanguages,imageId:puja.imageId
       },
         {
           include: [{
