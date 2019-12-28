@@ -68,7 +68,21 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       }
-    }
+    },
+    imageId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Image can't be empty."
+        },
+        customValidator(value) {
+          if (value.trim().length === 0) {
+            throw new Error("Image can't be empty");
+          }
+        }
+      }
+    },
 
   }, {});
   Puja.associate = function (models) {

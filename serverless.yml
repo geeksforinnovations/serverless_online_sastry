@@ -178,6 +178,13 @@ functions:
           method: get
           path: searchPuja
           cors: true
+  getLanguages:
+    handler: functions/index.getLanguages
+    events:
+      - http:
+          method: get
+          path: getLanguages
+          cors: true
   
          
 #    The following are a few example events you can configure

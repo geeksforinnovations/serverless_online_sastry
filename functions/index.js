@@ -17,6 +17,7 @@ const deleteBooking = require('./Booking/deleteBooking')
 const getAllBookings = require('./Booking/getAllBookings')
 const getBookingsByPhoneNumber = require('./Booking/getBookingsByPhoneNumber')
 const searchPuja = require('./pujas/searchPuja')
+const getLanguages = require('./Language/getLanguages')
 
 module.exports = {
     readAllPujas: readAllPujas,
@@ -35,5 +36,6 @@ module.exports = {
     deleteBooking:deleteBooking,
     getAllBookings:getAllBookings,
     getBookingsByPhoneNumber:getBookingsByPhoneNumber,
-    searchPuja:searchPuja
+    searchPuja:searchPuja,
+    getLanguages:getLanguages
 }
