@@ -3,7 +3,8 @@ const helpers = require("../../utils/helpers");
 
 module.exports = async (event, context, callback) => {
   try {
-    const bookings = await dbModels.Booking.findAll({ where: { phoneNumber: event.pathParameters.phoneNumber } });
+    const phoneNumber =event.pathParameters.id
+    const bookings = await dbModels.Booking.findAll({ where: { phoneNumber: phoneNumber } });
     return helpers.success({ data: bookings });
 
   } catch (error) {
