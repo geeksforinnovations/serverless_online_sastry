@@ -185,6 +185,20 @@ functions:
           method: get
           path: getLanguages
           cors: true
+  sendOTP:
+    handler: functions/index.generateOTP
+    events:
+      - http:
+          method: get
+          path: veify
+          cors: true
+  verifyOtp:
+    handler: functions/index.verifyOtp
+    events:
+      - http:
+          method: post
+          path: veify
+          cors: true
   
          
 #    The following are a few example events you can configure

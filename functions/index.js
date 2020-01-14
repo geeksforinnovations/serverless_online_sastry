@@ -18,6 +18,8 @@ const getAllBookings = require('./Booking/getAllBookings')
 const getBookingsByPhoneNumber = require('./Booking/getBookingsByPhoneNumber')
 const searchPuja = require('./pujas/searchPuja')
 const getLanguages = require('./Language/getLanguages')
+const generateOTP = require('./otp/create')
+const verifyOtp = require('./otp/verify')
 
 module.exports = {
     readAllPujas: readAllPujas,
@@ -37,5 +39,7 @@ module.exports = {
     getAllBookings:getAllBookings,
     getBookingsByPhoneNumber:getBookingsByPhoneNumber,
     searchPuja:searchPuja,
-    getLanguages:getLanguages
+    getLanguages:getLanguages,
+    generateOTP: generateOTP,
+    verifyOtp:verifyOtp
 }
