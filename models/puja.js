@@ -87,6 +87,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Puja.associate = function (models) {
     Puja.hasMany(models.PujaLanguage);
+   // Puja.hasMany(models.Booking);
   };
   return Puja;
 };
