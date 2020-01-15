@@ -3,7 +3,7 @@ const helpers = require("../../utils/helpers");
 
 module.exports = async (event, context, callback) => {
     try {
-        const booking = JSON.parse(event.body);;
+        const booking = JSON.parse(event.body);
         /* var booking = {
             pujaId: 12, languge: 'Telugu', name: 'Manjunath', phoneNumber: '123456',
             bookingDate: new Date(), addressLine1: 'lingampally', addressLine2: 'MIG'

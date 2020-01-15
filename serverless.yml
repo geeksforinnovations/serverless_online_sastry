@@ -189,7 +189,7 @@ functions:
     handler: functions/index.generateOTP
     events:
       - http:
-          method: get
+          method: get/number
           path: veify
           cors: true
   verifyOtp:
