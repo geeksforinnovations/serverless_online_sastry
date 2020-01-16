@@ -3,7 +3,7 @@ const helpers = require("../../utils/helpers");
 const dbModels = require('../../models')
 
 module.exports = async (event, context) => {
-   // const body = JSON.parse(event.body);
+    const body = JSON.parse(event.body);
     const pujaId = body.pujaId;
     const source =  body.source
     const description = "Puja charge";
@@ -14,7 +14,7 @@ module.exports = async (event, context) => {
        
         const customer = await stripe.charges.create({
             source,
-            amount: selectedPuja.price ? selectedPuja.price : '1000',
+            amount: selectedPuja.cost ? selectedPuja.cost : '1000',
             description,
             currency: "usd"
         });
