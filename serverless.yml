@@ -189,8 +189,8 @@ functions:
     handler: functions/index.generateOTP
     events:
       - http:
-          method: get/number
-          path: veify
+          method: get
+          path: veify/{number}
           cors: true
   verifyOtp:
     handler: functions/index.verifyOtp
