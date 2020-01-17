@@ -17,7 +17,19 @@ module.exports = (sequelize, DataTypes) => {
         min: 1
       }
     },
-    languge: DataTypes.STRING,
+    languageId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Language id can't be null or empty."
+        },
+        isInt: {
+            msg:"Enter valid value for language id."
+        },
+        min: 1
+      }
+    },
     name: {
        type: DataTypes.STRING,
        allowNull: false,
@@ -58,29 +70,50 @@ module.exports = (sequelize, DataTypes) => {
     addressLine1: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Address line1 can't be null."
-        },
-        notEmpty:
-        {
-          msg: "Address line1 can't be empty."
-        }
-      }
+      // validate: {
+      //   notNull: {
+      //     msg: "Address line1 can't be null."
+      //   },
+      //   notEmpty:
+      //   {
+      //     msg: "Address line1 can't be empty."
+      //   }
+      // }
     },
     addressLine2: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
+      // validate: {
+      //   notNull: {
+      //     msg: "Address line2 can't be null."
+      //   },
+      //   notEmpty:
+      //   {
+      //     msg: "Name can't be empty."
+      //   }
+      // }
+    },
+    requirePujaType:{
+      type:   DataTypes.ENUM,
+      allowNull:false,
+      values: ['Offline', 'Online'],
+      validate:{
         notNull: {
-          msg: "Address line2 can't be null."
+          msg: "Puja type can't be null."
         },
         notEmpty:
         {
-          msg: "Name can't be empty."
+          msg: "Puja type can't be empty."
         }
       }
-    }
+    },
+    videoCallUserName:{
+      type:   DataTypes.STRING
+    },
+    status:{
+      type:   DataTypes.ENUM,
+      values: ['Active', 'Completed','cancelled']
+    },
 
   }, {freezeTableName: true});
   Booking.associate = function (models) {
