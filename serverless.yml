@@ -199,6 +199,57 @@ functions:
           method: post
           path: veify
           cors: true
+  createAppSettings:
+    handler: functions/index.createAppSettings
+    events:
+      - http:
+          method: post
+          path: appSettings
+          cors: true
+  cancelBooking:
+    handler: functions/index.cancelBooking
+    events:
+      - http:
+          method: PUT
+          path: Booking/{id}
+          cors: true
+  updateBooking:
+    handler: functions/index.updateBooking
+    events:
+      - http:
+          method: patch
+          path: Booking
+          cors: true
+  getAllAppSettings:
+    handler: functions/index.getAllAppSettings
+    events:
+      - http:
+          method: get
+          path: getAllAppSettings
+          cors: true
+  updateAppSettings:
+    handler: functions/index.updateAppSettings
+    events:
+      - http:
+          method: patch
+          path: appSettings
+          cors: true
+  deleteAppSettings:
+    handler: functions/index.deleteAppSettings
+    events:
+      - http:
+          method: delete
+          path: appSettings/{id}
+          cors: true
+  getAppSettingsValueByKey:
+    handler: functions/index.getAppSettingsValueByKey
+    events:
+      - http:
+          method: get
+          path: appSettingsValue/{id}
+          cors: true
+          
+          
   
          
 #    The following are a few example events you can configure

@@ -20,6 +20,21 @@ const searchPuja = require('./pujas/searchPuja')
 const getLanguages = require('./Language/getLanguages')
 const generateOTP = require('./otp/create')
 const verifyOtp = require('./otp/verify')
+const createAppSettings = require('./appSettings/createAppSettings')
+const cancelBooking = require('./Booking/cancelBooking')
+const updateBooking = require('./Booking/updateBooking')
+const getAllAppSettings = require('./appSettings/getAllAppSettings')
+const updateAppSettings = require('./appSettings/updateAppSettings')
+const deleteAppSettings = require('./appSettings/deleteAppSettings')
+const getAppSettingsValueByKey = require('./appSettings/getAppSettingsValueByKey')
+
+
+
+
+
+
+
+
 
 module.exports = {
     readAllPujas: readAllPujas,
@@ -41,5 +56,12 @@ module.exports = {
     searchPuja:searchPuja,
     getLanguages:getLanguages,
     generateOTP: generateOTP,
-    verifyOtp:verifyOtp
+    verifyOtp:verifyOtp,
+    cancelBooking:cancelBooking,
+    updateBooking:updateBooking,
+    createAppSettings:createAppSettings,
+    getAllAppSettings:getAllAppSettings,
+    updateAppSettings:updateAppSettings,
+    deleteAppSettings:deleteAppSettings,
+    getAppSettingsValueByKey:getAppSettingsValueByKey
 }
