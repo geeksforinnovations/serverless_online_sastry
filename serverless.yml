@@ -24,13 +24,13 @@ custom:
 #  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
- iamRoleStatements:
-   - Effect: "Allow"
-     Action:
-      - ses:SendEmail
-      - ses:SendRawEmail
-     Resource: 
-      - "arn:aws:ses:${self:provider.region}:*:*"
+iamRoleStatements:
+ - Effect: "Allow"
+   Action:
+    - ses:SendEmail
+    - ses:SendRawEmail
+   Resource: 
+    - "arn:aws:ses:${self:provider.region}:*:*"
 
 # you can define service wide environment variables here
 #  environment:
@@ -182,8 +182,8 @@ functions:
     handler: functions/index.generateOTP
     events:
       - http:
-          method: get/number
-          path: veify
+          method: get
+          path: veify/{number}
           cors: true
   verifyOtp:
     handler: functions/index.verifyOtp

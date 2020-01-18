@@ -10,6 +10,8 @@ work on existing
 2. go to folder
 3. npm install
 
+serverless config credentials --provider aws --key AKIAZYD4SSRDOMWKXR6M --secret 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
+
 
 Testing
 # Local

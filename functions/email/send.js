@@ -1,18 +1,10 @@
-// const serverless  = require('serverless-http');
-// const AWS         = require('aws-sdk');
-// const dbModels = require('../../models')
-// const helpers = require("../../utils/helpers");
+const AWS = require('aws-sdk');
+const ses = new AWS.SES();
 
-
-var ses = new AWS.SES();
-
-module.exports.send = (event, context, callback) => {
-    return "hello"
-  //const data = JSON.parse(event.body);
-
+module.exports = async (event, context, callback) => {
   const params = {
     Destination: {
-      ToAddresses: [ "manikumarkv@gmail.com" ],
+      ToAddresses: ["manjunath.cycle@gmail.com"],
     },
     Message: {
       Subject: {
@@ -26,16 +18,10 @@ module.exports.send = (event, context, callback) => {
         }
       }
     },
-    Source: "manjunath.cycle@gmail.com"
+    Source: "manikumarkv@gmail.com"
   };
 
-  ses.sendEmail(params, function(err) {
-    callback((err)=>{
-        console.log(err);
-    }, {
-      statusCode: 200,
-      headers: { "Access-Control-Allow-Origin": "*" },
-      body: JSON.stringify({ status: "success" })
-    });
-  })
+  const result = await ses.sendEmail(params).promise()
+  console.log('result', result)
+  return 'hello'
 };
