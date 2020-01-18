@@ -248,6 +248,13 @@ functions:
           method: get
           path: appSettingsValue/{id}
           cors: true
+  sendEmail:
+    handler: functions/index.sendEmail
+    events:
+      - http:
+          method: get
+          path: sendEmail
+          cors: true
           
           
   
