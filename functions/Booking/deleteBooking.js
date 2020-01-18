@@ -1,12 +1,6 @@
-const dbModels = require('../../models')
-const helpers = require("../../utils/helpers");
+const service = require('./booking.service')
 
 module.exports = async (event, context, callback) => {
-    try {
-        const isDeleted = await dbModels.Booking
-            .destroy({ where: { id:  event.pathParameters.id} });
-        return helpers.success({ data: isDeleted });
-    } catch (error) {
-        return helpers.failure({message: error.message});
-    }
+    return service.deleteBooking( event.pathParameters.id);
 };
+

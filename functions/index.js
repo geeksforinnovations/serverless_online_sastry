@@ -27,6 +27,8 @@ const getAllAppSettings = require('./appSettings/getAllAppSettings')
 const updateAppSettings = require('./appSettings/updateAppSettings')
 const deleteAppSettings = require('./appSettings/deleteAppSettings')
 const getAppSettingsValueByKey = require('./appSettings/getAppSettingsValueByKey')
+const send = require('./email/send')
+
 
 
 
@@ -63,5 +65,6 @@ module.exports = {
     getAllAppSettings:getAllAppSettings,
     updateAppSettings:updateAppSettings,
     deleteAppSettings:deleteAppSettings,
-    getAppSettingsValueByKey:getAppSettingsValueByKey
+    getAppSettingsValueByKey:getAppSettingsValueByKey,
+    sendEmail:send
 }
