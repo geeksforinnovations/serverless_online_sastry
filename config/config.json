@@ -16,7 +16,7 @@
   "development": {
     "username": "mani",
     "password": "Manikumar070",
-    "database": "dev_mani_online_sastry1",
+    "database": "dev",
     "host": "139.59.77.171",
     "dialect": "mysql"
   },
