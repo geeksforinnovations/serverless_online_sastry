@@ -10,7 +10,7 @@ work on existing
 2. go to folder
 3. npm install
 
-serverless config credentials --provider aws --key AKIAZYD4SSRDOMWKXR6M --secret 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
+
 
 
 Testing
@@ -21,7 +21,7 @@ sls invoke local --function hello // we can use serverless/sls
 Test Cognito using CLI
 aws cognito-idp sign-up \
   --region us-east-1 \
-  --client-id 6nu10vhcmmjrrgsjkru8ascbb3 \
+  --client-id <clientid> \
   --username mani@example.com \
   --password Passw0rd!
 
@@ -100,17 +100,3 @@ serverless deploy function -f list
 
 
 
-  npx aws-api-gateway-cli-test \
---username='mani@example.com' \
---password='Passw0rd!' \
---user-pool-id='us-east-1_Us1T5AZvU' \
---app-client-id='6nu10vhcmmjrrgsjkru8ascbb3' \
---cognito-region='us-east-1' \
---identity-pool-id='us-east-1:742ea873-7f56-48a2-830f-264292725b98' \
---invoke-url='https://e93ownwzgl.execute-api.us-east-1.amazonaws.com/dev/pujas/' \
---api-gateway-region='us-east-1' \
---method='GET' \
---path-template='/notes' \
---body='{"content":"hello world","attachment":"hello.jpg"}'
-
-npx aws-api-gateway-cli-test --username mani@example.com --password Passw0rd! --user-pool-id us-east-1_Us1T5AZvU --app-client-id 6nu10vhcmmjrrgsjkru8ascbb3 --cognito-region us-east-1 --identity-pool-id us-east-1:742ea873-7f56-48a2-830f-264292725b98 --invoke-url https://e93ownwzgl.execute-api.us-east-1.amazonaws.com/dev/pujas/ --api-gateway-region us-east-1 --path-template /notes --method GET --body "{\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}"
