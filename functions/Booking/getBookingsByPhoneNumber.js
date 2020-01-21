@@ -1,6 +1,14 @@
 const service = require('./booking.service')
 
+const helpers = require("../../utils/helpers");
 module.exports = async (event, context, callback) => {
-  const phoneNumber = event.pathParameters.id;
-    return service.getBookingsByPhoneNumber(phoneNumber);
+
+  try {
+    const phoneNumber = event.pathParameters.id;
+    const data = await service.getBookingsByPhoneNumber(phoneNumber);
+    return helpers.success({ data: data });
+  } catch (error) {
+    return helpers.failure({ message: error.message });
+  }
+
 };
