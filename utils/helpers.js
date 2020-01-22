@@ -26,9 +26,27 @@ function buildResponse(statusCode, body) {
         body: JSON.stringify(body)
     };
 }
+function isDefined(val) {
+    return typeof val !== 'undefined';
+  }
+  
+  function isUndefined(val) {
+    return typeof val == 'undefined';
+  }
+  
+  function isNullOrEmpty(val) {
+    return val === null || val === '';
+  }
+  function isArray(val) {
+    return Array.isArray(val);
+  }
 module.exports = {
     buildResponse: buildResponse,
     failure: failure,
     success: success,
-    calculateCost: calculateCost
+    calculateCost: calculateCost,
+    isDefined:isDefined,
+    isArray,
+    isNullOrEmpty,
+    isUndefined
 }

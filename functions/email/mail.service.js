@@ -51,6 +51,31 @@ function getEmailBody(booking) {
   `
 }
 
+function getUpdateBookingBody(booking){
+  return `
+  Hi Team,
+
+  This is updation of booking email from ${booking.name} (${booking.phoneNumber}) on date: ${booking.bookingDate}
+  Puja Type: Online
+  SkypeID is: ${booking.videoCallUserName}.
+
+  Thanks,
+  Online Sastry Team.
+  
+  `
+}
+function getCancleBookingBody(booking){
+  return `
+  Hi Team,
+  
+  Booking got canclled from ${booking.id} - ${booking.name} - ${booking.phoneNumber}.
+  
+  Thanks,
+  Online Sastry Team
+  `
+
+}
+
 async function sendBookingConfirmation(booking) {
   const emailBody = getEmailBody(booking)
   const toEmail = getToEmail();
@@ -60,4 +85,22 @@ async function sendBookingConfirmation(booking) {
 
 }
 
-module.exports = sendBookingConfirmation
+async function sendUpdateBookingEmail (booking){
+  const emailBody = getUpdateBookingBody(booking)
+  const toEmail = getToEmail();
+  const fromEmail = getEmaildetails()
+
+ return await send(fromEmail, toEmail, 'Booking updation', emailBody)
+
+}
+
+async function sendCancelBookingEmail (booking){
+  const emailBody = getCancleBookingBody(booking)
+  const toEmail = getToEmail();
+  const fromEmail = getEmaildetails()
+
+ return await send(fromEmail, toEmail, 'Booking canclled', emailBody)
+
+}
+
+module.exports = {sendBookingConfirmation, sendUpdateBookingEmail, sendCancelBookingEmail}
