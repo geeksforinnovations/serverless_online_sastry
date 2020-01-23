@@ -1,24 +1,10 @@
-const dbModels = require('../../models')
 const helpers = require("../../utils/helpers");
+const pujaService = require('./pujas.service')
 
 module.exports = async (event, context, callback) => {
   try {
-    const pujaDetails = await dbModels.Puja.findOne({ where: { id: event.pathParameters.id },
-      include: [
-        {
-          model: dbModels.PujaLanguage,
-          attributes: ['LanguageId'],
-          required: true,
-          include: [
-            {
-              model: dbModels.Language,
-              attributes: ['name'],
-              required: true,
-            }
-          ]
-        }
-      ]      
-            });
+    const pujaDetails = await pujaService.getById(event.pathParameters.id)
+
     return helpers.success({ data: pujaDetails });
 
   } catch (error) {
