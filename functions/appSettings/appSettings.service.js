@@ -1,6 +1,6 @@
 const dbModels = require('../../models')
 
-module.exports.createSetting = function (appSettings) {
+module.exports.createSetting = async function (appSettings) {
     try {
         const createdSetting = await dbModels.AppSettings
             .create({
@@ -16,7 +16,7 @@ module.exports.createSetting = function (appSettings) {
     }
 }
 
-module.exports.deleteSetting = function (id) {
+module.exports.deleteSetting = async function (id) {
     try {
         const isDeleted = await dbModels.AppSettings
             .destroy({
@@ -30,7 +30,7 @@ module.exports.deleteSetting = function (id) {
 
 }
 
-module.exports.getAllSettings = function () {
+module.exports.getAllSettings = async function () {
     try {
         return appSettingsList = await dbModels.AppSettings
             .findAll();
@@ -40,9 +40,9 @@ module.exports.getAllSettings = function () {
     }
 }
 
-module.exports.getByKey = function (keyName) {
+module.exports.getByKey = async function (keyName) {
     try {
-        const appSettingsList = await dbModels.AppSettings
+       return await dbModels.AppSettings
             .findAll(
                 {
                     where: {
@@ -57,9 +57,9 @@ module.exports.getByKey = function (keyName) {
 
 }
 
-module.exports.updateKey =  function(appSettings) {
+module.exports.updateKey = async  function(appSettings) {
     try {
-        const isUpdated = await dbModels.AppSettings
+       return await dbModels.AppSettings
         .update({
             key: appSettings.key,
             value: appSettings.value,
