@@ -7,7 +7,7 @@ module.exports = async (event, context, callback) => {
     const appSettings = await appSettingsService.getByKey(event.pathParameters.id)
 
     return helpers.success({ data: appSettings });
-    callback(null, x)
+   
   } catch (error) {
     return helpers.failure({ message: error.message });
   }

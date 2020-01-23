@@ -8,7 +8,7 @@ module.exports = async (event, context, callback) => {
       .create({ question: faq.question,answer:faq.answer
        });
     return helpers.success({ data: createdFaq });
-    //callback(null, x)
+  
   } catch (error) {
     return helpers.failure({ message: error.message });
   }

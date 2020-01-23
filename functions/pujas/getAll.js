@@ -21,7 +21,7 @@ module.exports = async (event, context, callback) => {
         ]
       });
     return helpers.success({ data: pujaList });
-    callback(null, x)
+  
   } catch (error) {
     return helpers.failure({ message: error.message });
   }
