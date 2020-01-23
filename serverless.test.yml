@@ -1,0 +1,12 @@
+- name: get all pujas returns 200
+  endpoint:
+    method: get
+    path: /pujas
+  response:
+    status: 200
+- name: hello endpoint returns 200
+  endpoint:
+    method: get
+    path: /pujas/1
+  response:
+    status: 200
