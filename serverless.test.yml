@@ -18,4 +18,4 @@
     method: get
     path: /pujas/1sd
   response:
-    status: 400
+    status: 500
