@@ -20,7 +20,8 @@
     "aws-sdk": "^2.606.0",
     "sequelize-cli": "^5.5.1",
     "serverless-bundle": "^1.2.5",
-    "serverless-dotenv-plugin": "^2.1.1"
+    "serverless-dotenv-plugin": "^2.1.1",
+    "serverless-offline": "^6.0.0-alpha.62"
   },
   "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
   "license": "MIT"
