@@ -205,7 +205,7 @@ functions:
     events:
       - http:
           method: PUT
-          path: bookings/cancel{id}
+          path: bookings/cancel/{id}
           cors: true
   updateBooking:
     handler: functions/index.updateBooking
