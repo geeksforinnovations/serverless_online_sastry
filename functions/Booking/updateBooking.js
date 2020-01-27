@@ -6,7 +6,7 @@ module.exports = async (event, context, callback) => {
   try {
     const booking = JSON.parse(event.body);;
     const data = await service.updateBooking(booking);
-    emailService.sendCancelBookingEmail({}).then(reap=> {})
+    emailService.sendUpdateBookingEmail(booking).then(reap=> {})
     return helpers.success({ data: data });
   } catch (error) {
     return helpers.failure({ message: error.message });

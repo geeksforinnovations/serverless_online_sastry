@@ -73,11 +73,11 @@ module.exports.updateBooking = async (booking) => {
     //     requirePujaType:'Online',videoCallUserName:'test@skype',status:'Active'
     // }; 
     const bookingDetails = {
-      pujaId: booking.pujaId, languageId: booking.languageId, name: booking.name,
-      phoneNumber: booking.phoneNumber, bookingDate: booking.bookingDate,
-      addressLine1: booking.addressLine1, addressLine2: booking.addressLine2,
-      requirePujaType: booking.requirePujaType, videoCallUserName: booking.videoCallUserName,
-      status: booking.status
+      //languageId: booking.languageId,
+      bookingDate: booking.bookingDate,
+      // requirePujaType: booking.requirePujaType,
+      // videoCallUserName: booking.videoCallUserName,
+      // status: booking.status
     }
     const updatedBooking = await dbModels.Booking
       .update(bookingDetails, { where: { id: booking.id } });
