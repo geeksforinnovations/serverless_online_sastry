@@ -32,6 +32,7 @@ module.exports.verifyOTP = async function (phoneNumber, otpCode) {
             .verificationChecks
             .create({ code: otpCode, to: phoneNumber });
         console.log('ver code', verificationResult)
+        return verificationResult;
     } catch (error) {
         console.error("unable to verify OTP because of ", error)
         throw error;
