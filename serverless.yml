@@ -142,28 +142,28 @@ functions:
     events:
       - http:
           method: post
-          path: Booking
+          path: bookings
           cors: true
   getAllBookings:
     handler: functions/index.getAllBookings
     events:
       - http:
           method: get
-          path: Booking
+          path: bookings
           cors: true
   getBookingsByPhoneNumber:
     handler: functions/index.getBookingsByPhoneNumber
     events:
       - http:
           method: get
-          path: Booking/{id}
+          path: bookings/{id}
           cors: true
   deleteBooking:
     handler: functions/index.deleteBooking
     events:
       - http:
           method: delete
-          path: Booking/{id}
+          path: bookings/{id}
           cors: true
   searchPuja:
     handler: functions/index.searchPuja
@@ -177,7 +177,7 @@ functions:
     events:
       - http:
           method: get
-          path: getLanguages
+          path: languages
           cors: true
   sendOTP:
     handler: functions/index.generateOTP
@@ -205,21 +205,21 @@ functions:
     events:
       - http:
           method: PUT
-          path: Booking/{id}
+          path: bookings/cancel{id}
           cors: true
   updateBooking:
     handler: functions/index.updateBooking
     events:
       - http:
           method: patch
-          path: Booking
+          path: bookings
           cors: true
   getAllAppSettings:
     handler: functions/index.getAllAppSettings
     events:
       - http:
           method: get
-          path: getAllAppSettings
+          path: appSettings
           cors: true
   updateAppSettings:
     handler: functions/index.updateAppSettings
@@ -240,7 +240,7 @@ functions:
     events:
       - http:
           method: get
-          path: appSettingsValue/{id}
+          path: appSettings/{id}
           cors: true
   sendEmail:
     handler: functions/index.sendEmail
