@@ -36,7 +36,7 @@
     status: 200
 - name: cancel Bookings by Id with 200
   endpoint:
-    method: get
+    method: put
     path: /bookings/cancel/1
   response:
     status: 200
@@ -65,7 +65,7 @@
 # Get Languages
 - name: get all languages with 200
   endpoint:
-    method: delete
+    method: get
     path: /languages
   response:
     status: 200
