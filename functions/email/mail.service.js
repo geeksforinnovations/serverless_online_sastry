@@ -4,7 +4,7 @@ const appSettingsService = require('../../services/appSettings.service')
 
 async function send(from, to, subject, body) {
   const request = getMailRequest(from, to, subject, body);
-  console.log('req', request)
+  console.log('eail req', request)
   return await ses.sendEmail(request).promise();
 };
 
@@ -77,11 +77,12 @@ function getCancleBookingBody(booking){
 }
 
 async function sendBookingConfirmation(booking) {
+  console.log("ready to send email fir create")
   const emailBody = getEmailBody(booking)
   const toEmail = getToEmail();
   const fromEmail = getEmaildetails()
 
- return await send(fromEmail, toEmail, 'Booking confirmation', emailBody)
+ return await send(fromEmail, toEmail, `Booking confirmation from ${booking.name}`, emailBody)
 
 }
 

@@ -12,8 +12,9 @@ module.exports = async (event, context, callback) => {
         //     console.error('unable to send OTP')
         //     throw new Error("otp failed")
         // }
+        console.log("create booking started")
         const data = await service.createBooking(booking);
-        emailService.sendBookingConfirmation(booking).then(respn => { })
+       const email = await emailService.sendBookingConfirmation(booking)
         return helpers.success({ data: data });
     } catch (error) {
         return helpers.failure({ message: error.message });
