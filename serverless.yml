@@ -207,11 +207,11 @@ functions:
           method: PUT
           path: bookings/cancel/{id}
           cors: true
-  updateBooking:
-    handler: functions/index.updateBooking
+  reschedule:
+    handler: functions/index.reschedule
     events:
       - http:
-          method: patch
+          method: PATCH
           path: bookings
           cors: true
   getAllAppSettings:

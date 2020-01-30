@@ -60,7 +60,7 @@ module.exports = {
     generateOTP: generateOTP,
     verifyOtp:verifyOtp,
     cancelBooking:cancelBooking,
-    updateBooking:updateBooking,
+    reschedule:updateBooking,
     createAppSettings:createAppSettings,
     getAllAppSettings:getAllAppSettings,
     updateAppSettings:updateAppSettings,
