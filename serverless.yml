@@ -1,9 +1,10 @@
-
-
-service: dev-1 # NOTE: update this with your service name
+app: CloudFormationTest
+service: CloudFormationTest-1 # NOTE: update this with your service name
 
 plugins:
   - serverless-dotenv-plugin
+  - serverless-offline
+  # - serverless-bundle
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
@@ -19,6 +20,15 @@ custom:
   # Our stage is based on what is passed in when running serverless
   # commands. Or fallsback to what we have set in the provider section.
   stage: ${opt:stage, self:provider.stage}
+  DB_NAME: graphql
+  USERNAME: master
+  PASSWORD: password
+  VPC_CIDR: 10
+  MYSQL:
+    HOST:
+      Fn::GetAtt: [MySqlRDSInstance, Endpoint.Address]
+    PORT:
+      Fn::GetAtt: [MySqlRDSInstance, Endpoint.Port]
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -34,7 +44,7 @@ iamRoleStatements:
 
 # you can define service wide environment variables here
 #  environment:
-#    variable1: value1
+   
 
 # you can add packaging information here
 #package:
@@ -46,6 +56,11 @@ iamRoleStatements:
 #    - exclude-me-dir/**
 environment:
   stripeSecretKey: ${env:STRIPE_SECRET_KEY}
+  MYSQL_HOST: ${self:custom.MYSQL.HOST}
+  MYSQL_PORT: ${self:custom.MYSQL.PORT}
+  DB_NAME: ${self:custom.DB_NAME}
+  USERNAME: ${self:custom.USERNAME}
+  PASSWORD: ${self:custom.PASSWORD}
 
 
 
@@ -141,28 +156,28 @@ functions:
     events:
       - http:
           method: post
-          path: Booking
+          path: bookings
           cors: true
   getAllBookings:
     handler: functions/index.getAllBookings
     events:
       - http:
           method: get
-          path: Booking
+          path: bookings
           cors: true
   getBookingsByPhoneNumber:
     handler: functions/index.getBookingsByPhoneNumber
     events:
       - http:
           method: get
-          path: Booking/{id}
+          path: bookings/{id}
           cors: true
   deleteBooking:
     handler: functions/index.deleteBooking
     events:
       - http:
           method: delete
-          path: Booking/{id}
+          path: bookings/{id}
           cors: true
   searchPuja:
     handler: functions/index.searchPuja
@@ -176,7 +191,7 @@ functions:
     events:
       - http:
           method: get
-          path: getLanguages
+          path: languages
           cors: true
   sendOTP:
     handler: functions/index.generateOTP
@@ -204,21 +219,21 @@ functions:
     events:
       - http:
           method: PUT
-          path: Booking/{id}
+          path: bookings/cancel/{id}
           cors: true
-  updateBooking:
-    handler: functions/index.updateBooking
+  reschedule:
+    handler: functions/index.reschedule
     events:
       - http:
-          method: patch
-          path: Booking
+          method: PATCH
+          path: bookings
           cors: true
   getAllAppSettings:
     handler: functions/index.getAllAppSettings
     events:
       - http:
           method: get
-          path: getAllAppSettings
+          path: appSettings
           cors: true
   updateAppSettings:
     handler: functions/index.updateAppSettings
@@ -239,7 +254,7 @@ functions:
     events:
       - http:
           method: get
-          path: appSettingsValue/{id}
+          path: appSettings/{id}
           cors: true
   sendEmail:
     handler: functions/index.sendEmail
@@ -251,58 +266,31 @@ functions:
           
           
   
-         
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
-#    events:
-#      - http:
-#          path: users/create
-#          method: get
-#      - websocket: $connect
-#      - s3: ${env:BUCKET}
-#      - schedule: rate(10 minutes)
-#      - sns: greeter-topic
-#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
-#      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx
-#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
-#      - iot:
-#          sql: "SELECT * FROM 'some_topic'"
-#      - cloudwatchEvent:
-#          event:
-#            source:
-#              - "aws.ec2"
-#            detail-type:
-#              - "EC2 Instance State-change Notification"
-#            detail:
-#              state:
-#                - pending
-#      - cloudwatchLog: '/aws/lambda/hello'
-#      - cognitoUserPool:
-#          pool: MyUserPool
-#          trigger: PreSignUp
 
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
 
 # you can add CloudFormation resource templates here
 # Create our resources with separate CloudFormation templates
 resources:
-  # API Gateway Errors
-  - ${file(resources/api-gateway-errors.yml)}
-  # S3
-  - ${file(resources/s3-bucket.yml)}
-  # Cognito
-  - ${file(resources/cognito-user-pool.yml)}
-  - ${file(resources/cognito-identity-pool.yml)}
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+  Resources:
+    ServerlessInternetGateway: ${file(./resources/ServerlessInternetGateway.yml)}
+    ServerlessVPC: ${file(./resources/ServerlessVPC.yml)}
+    ServerlessVPCGA: ${file(./resources/ServerlessVPCGA.yml)}
+    ServerlessSubnetA: ${file(./resources/ServerlessSubnetA.yml)}
+    ServerlessSubnetB: ${file(./resources/ServerlessSubnetB.yml)}
+    ServerlessSubnetC: ${file(./resources/ServerlessSubnetC.yml)}
+    ServerlessSubnetGroup: ${file(./resources/ServerlessSubnetGroup.yml)}
+    ServerlessSecurityGroup: ${file(./resources/ServerlessSecurityGroup.yml)}
+    RouteTablePublic: ${file(./resources/RouteTablePublic.yml)}
+    RoutePublic: ${file(./resources/RoutePublic.yml)}
+    RouteTableAssociationSubnetA: ${file(./resources/RouteTableAssociationSubnetA.yml)}
+    RouteTableAssociationSubnetB: ${file(./resources/RouteTableAssociationSubnetB.yml)}
+    RouteTableAssociationSubnetC: ${file(./resources/RouteTableAssociationSubnetC.yml)}
+    MySqlRDSInstance: ${file(./resources/MySqlRDSInstance.yml)}
+    # s3-bucket: ${file(resources/s3-bucket.yml)}  
+    # CognitoAuthRole: ${file(resources/CognitoAuthRole.yml)}
+    # CognitoIdentityPool: ${file(resources/CognitoIdentityPool.yml)}
+    # CognitoIdentityPoolRoles: ${file(resources/CognitoIdentityPoolRoles.yml)}
+    # CognitoUserPool: ${file(resources/CognitoUserPool.yml)}
+    # CognitoUserPoolClient: ${file(resources/CognitoUserPoolClient.yml)}
+    # GatewayResponseDefault4XX: ${file(resources/GatewayResponseDefault4XX.yml)}
+    # GatewayResponseDefault5XX: ${file(resources/GatewayResponseDefault5XX.yml)}

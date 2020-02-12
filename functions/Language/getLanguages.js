@@ -9,7 +9,7 @@ module.exports = async (event, context, callback) => {
       });
     //console.log("pujas", x)
     return helpers.success({ data: languages });
-    callback(null, x)
+   
   } catch (error) {
     return helpers.failure({ message: error.message });
   }

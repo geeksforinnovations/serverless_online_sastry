@@ -6,7 +6,7 @@ module.exports = async (event, context, callback) => {
     const faqList = await dbModels.FAQ
       .findAll();
     return helpers.success({ data: faqList });
-    callback(null, x)
+  
   } catch (error) {
     return helpers.failure({ message: error.message });
   }
