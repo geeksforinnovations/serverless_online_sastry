@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "development": {
-    "username": "mani",
-    "password": "Manikumar070",
-    "database": "dev",
-    "host": "139.59.77.171",
+    "username": "master",
+    "password": "password",
+    "database": "online-sastry-dev",
+    "host": "cm15on0bbud5goq.clof0uqxdcvt.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
