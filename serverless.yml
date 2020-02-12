@@ -286,18 +286,11 @@ resources:
     RouteTableAssociationSubnetB: ${file(./resources/RouteTableAssociationSubnetB.yml)}
     RouteTableAssociationSubnetC: ${file(./resources/RouteTableAssociationSubnetC.yml)}
     MySqlRDSInstance: ${file(./resources/MySqlRDSInstance.yml)}
-    s3-bucket: ${file(resources/s3-bucket.yml)}  
-    CognitoAuthRole: ${file(resources/CognitoAuthRole.yml)}
-    CognitoIdentityPool: ${file(resources/CognitoIdentityPool.yml)}
-    CognitoIdentityPoolRoles: ${file(resources/CognitoIdentityPoolRoles.yml)}
-    CognitoUserPool: ${file(resources/CognitoUserPool.yml)}
-    CognitoUserPoolClient: ${file(resources/CognitoUserPoolClient.yml)}
-    GatewayResponseDefault4XX: ${file(resources/GatewayResponseDefault4XX.yml)}
-    GatewayResponseDefault5XX: ${file(resources/GatewayResponseDefault5XX.yml)}
-  # MySqlRDSInstance: ${file(resource/MySqlRDSInstance.yml)}
-  # RoutePublic: ${file(resource/RoutePublic.yml)}
-
-
-  
-  # - ${file(resources/cognito-user-pool.yml)}
-  # - ${file(resources/cognito-identity-pool.yml)}  
+    # s3-bucket: ${file(resources/s3-bucket.yml)}  
+    # CognitoAuthRole: ${file(resources/CognitoAuthRole.yml)}
+    # CognitoIdentityPool: ${file(resources/CognitoIdentityPool.yml)}
+    # CognitoIdentityPoolRoles: ${file(resources/CognitoIdentityPoolRoles.yml)}
+    # CognitoUserPool: ${file(resources/CognitoUserPool.yml)}
+    # CognitoUserPoolClient: ${file(resources/CognitoUserPoolClient.yml)}
+    # GatewayResponseDefault4XX: ${file(resources/GatewayResponseDefault4XX.yml)}
+    # GatewayResponseDefault5XX: ${file(resources/GatewayResponseDefault5XX.yml)}

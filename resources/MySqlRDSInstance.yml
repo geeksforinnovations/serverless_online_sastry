@@ -11,5 +11,5 @@ Properties:
   DBSubnetGroupName:
     Ref: ServerlessSubnetGroup
   Engine: mysql
-  EngineVersion: "5.6.41"
+  EngineVersion: "5.7.28"
   PubliclyAccessible: true

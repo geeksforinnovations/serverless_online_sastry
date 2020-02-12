@@ -24,6 +24,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-      return queryInterface.bulkDelete('FAQsequelize db:seed', null, {});
+      return queryInterface.bulkDelete('FAQ', null, {});
   }
 };
