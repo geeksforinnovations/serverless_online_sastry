@@ -16,8 +16,8 @@
   "development": {
     "username": "master",
     "password": "password",
-    "database": "online-sastry-dev",
-    "host": "cm15on0bbud5goq.clof0uqxdcvt.us-east-1.rds.amazonaws.com",
+    "database": "onlinesastry",
+    "host": "onlinesastry-dev.clof0uqxdcvt.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
