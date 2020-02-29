@@ -3,9 +3,14 @@ const ses = new AWS.SES();
 const appSettingsService = require('../../services/appSettings.service')
 
 async function send(from, to, subject, body) {
-  const request = getMailRequest(from, to, subject, body);
-  console.log('eail req', request)
-  return await ses.sendEmail(request).promise();
+  try {
+    const request = getMailRequest(from, to, subject, body);
+    console.log('eail req', request)
+    return await ses.sendEmail(request).promise();
+  } catch (error) {
+    console.log('sending email error,', error)
+  }
+
 };
 
 function getMailRequest(from, to, subject, body) {
@@ -29,11 +34,11 @@ function getMailRequest(from, to, subject, body) {
   };
 }
 
- function getEmaildetails() {
+function getEmaildetails() {
   return process.env.FROM_EMAIL// 'kumarkvm070@gmail.com'// await appSettingsService.getSettingByKey('emailFrom')
 }
 
- function getToEmail() {
+function getToEmail() {
   return process.env.TO_EMAIL// 'manikumarkv@gmail.com'// appSettingsService.getSettingByKey('emailFrom')
 }
 
@@ -51,7 +56,7 @@ function getEmailBody(booking) {
   `
 }
 
-function getUpdateBookingBody(booking){
+function getUpdateBookingBody(booking) {
   return `
   Hi Team,
 
@@ -64,7 +69,7 @@ function getUpdateBookingBody(booking){
   
   `
 }
-function getCancleBookingBody(booking){
+function getCancleBookingBody(booking) {
   return `
   Hi Team,
   
@@ -82,26 +87,26 @@ async function sendBookingConfirmation(booking) {
   const toEmail = getToEmail();
   const fromEmail = getEmaildetails()
 
- return await send(fromEmail, toEmail, `Booking confirmation from ${booking.name}`, emailBody)
+  return await send(fromEmail, toEmail, `Booking confirmation from ${booking.name}`, emailBody)
 
 }
 
-async function sendUpdateBookingEmail (booking){
+async function sendUpdateBookingEmail(booking) {
   const emailBody = getUpdateBookingBody(booking)
   const toEmail = getToEmail();
   const fromEmail = getEmaildetails()
 
- return await send(fromEmail, toEmail, 'Booking updation', emailBody)
+  return await send(fromEmail, toEmail, 'Booking updation', emailBody)
 
 }
 
-async function sendCancelBookingEmail (booking){
+async function sendCancelBookingEmail(booking) {
   const emailBody = getCancleBookingBody(booking)
   const toEmail = getToEmail();
   const fromEmail = getEmaildetails()
 
- return await send(fromEmail, toEmail, 'Booking canclled', emailBody)
+  return await send(fromEmail, toEmail, 'Booking canclled', emailBody)
 
 }
 
-module.exports = {sendBookingConfirmation, sendUpdateBookingEmail, sendCancelBookingEmail}
+module.exports = { sendBookingConfirmation, sendUpdateBookingEmail, sendCancelBookingEmail }
