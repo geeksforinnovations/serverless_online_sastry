@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Pujari',
-          key: 'poojariId', 
+          key: 'id', 
         },
         onUpdate: 'NO ACTION',
         onDelete: 'NO ACTION',
@@ -23,7 +23,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Booking',
-          key: 'bookingId', 
+          key: 'id', 
        },
        onUpdate: 'NO ACTION',
        onDelete: 'NO ACTION',

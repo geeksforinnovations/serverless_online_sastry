@@ -2,7 +2,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('PujariLanguages', {
-      pujariLanguageId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -12,7 +12,16 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { // <--- is this redundant to associate
           model: 'Languages',
-          key: 'languageId'
+          key: 'id'
+        },
+        onDelete: 'NO ACTION',
+        onUpdate: 'NO ACTION',
+      },
+      pujariId: {
+        type: Sequelize.INTEGER,
+        references: { // <--- is this redundant to associate
+          model: 'Pujari',
+          key: 'id'
         },
         onDelete: 'NO ACTION',
         onUpdate: 'NO ACTION',

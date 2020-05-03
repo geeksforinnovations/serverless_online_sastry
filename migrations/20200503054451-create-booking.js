@@ -2,7 +2,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Booking', {
-      bookingId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -13,15 +13,15 @@ module.exports = {
         type: Sequelize.DATE
       },
       status: {
-        allowNull: false,
-        type: Sequelize.STRING
+        type:   Sequelize.ENUM,
+        values: ['Active', 'Completed','Cancelled']
       },
       languageId:{
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Languages',
-          key: 'languageId', 
+          key: 'id', 
        },
        onUpdate: 'NO ACTION',
        onDelete: 'NO ACTION',
@@ -51,7 +51,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Pujari',
-          key: 'poojariId', 
+          key: 'id', 
        },
        onUpdate: 'NO ACTION',
        onDelete: 'NO ACTION',
@@ -61,11 +61,14 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Pujas',
-          key: 'pujaId', 
+          key: 'id', 
        },
        onUpdate: 'NO ACTION',
        onDelete: 'NO ACTION',
-
+      },
+      pujaType: {
+        type:   Sequelize.ENUM,
+        values: ['Offline', 'Online']
       },
       createdsta_date: {
         allowNull: false,

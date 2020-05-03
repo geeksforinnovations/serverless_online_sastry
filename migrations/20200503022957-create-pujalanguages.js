@@ -1,18 +1,31 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Pujas', {
-      pujaId: {
+    return queryInterface.createTable('PujaLanguages', {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING(200)
+      pujaid:{
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Pujas',
+          key: 'id', 
+       },
+       onUpdate: 'NO ACTION',
+       onDelete: 'NO ACTION',
       },
-      description:{
-        type: Sequelize.STRING(500)
+      languageId:{
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Languages',
+          key: 'id', 
+       },
+       onUpdate: 'NO ACTION',
+       onDelete: 'NO ACTION',
+
       },
       created_date: {
         allowNull: false,
@@ -33,6 +46,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Pujas');
+    return queryInterface.dropTable('PujaLanguages');
   }
 };

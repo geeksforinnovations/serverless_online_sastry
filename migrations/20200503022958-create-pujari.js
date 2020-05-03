@@ -2,7 +2,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Pujari', {
-      poojariId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -48,15 +48,6 @@ module.exports = {
       pujariTimeZone: {
         allowNull: false,
         type: Sequelize.STRING(50)
-      },
-      pujariLanguageId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'PujariLanguages',
-          key: 'pujariLanguageId', 
-       },
-       onUpdate: 'NO ACTION',
-       onDelete: 'NO ACTION',
       },
       pujariActive: {
         type: Sequelize.BOOLEAN

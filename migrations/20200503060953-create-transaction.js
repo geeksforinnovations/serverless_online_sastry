@@ -16,7 +16,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Booking',
-          key: 'bookingId', 
+          key: 'id', 
        },
        onUpdate: 'NO ACTION',
        onDelete: 'NO ACTION',

@@ -8,7 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      fullName: {
+        type: Sequelize.STRING
+      },
+      contactNumber: {
+        type: Sequelize.STRING
+      },
+      address: {
+        type: Sequelize.STRING
+      },
+      cognitoId: {
         type: Sequelize.STRING
       },
       created_date: {
