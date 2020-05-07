@@ -35,26 +35,25 @@ custom:
 
 # you can add statements to the Lambda function's IAM Role here
 iamRoleStatements:
- - Effect: "Allow"
-   Action:
-    - ses:SendEmail
-    - ses:SendRawEmail
-   Resource: 
-    - "arn:aws:ses:${self:provider.region}:*:*"
+  - Effect: "Allow"
+    Action:
+      - ses:SendEmail
+      - ses:SendRawEmail
+    Resource:
+      - "arn:aws:ses:${self:provider.region}:*:*"
 
 # you can define service wide environment variables here
 #  environment:
-   
 
 # you can add packaging information here
 package:
- exclude:
-   - __tests__/**
-   - migrations/**
-   - mocks/**
-   - seeders/**
-   - tests/**
-   - readme.md
+  exclude:
+    - __tests__/**
+    - migrations/**
+    - mocks/**
+    - seeders/**
+    - tests/**
+    - readme.md
 environment:
   stripeSecretKey: ${env:STRIPE_SECRET_KEY}
   MYSQL_HOST: ${self:custom.MYSQL.HOST}
@@ -62,8 +61,6 @@ environment:
   DB_NAME: ${self:custom.DB_NAME}
   USERNAME: ${self:custom.USERNAME}
   PASSWORD: ${self:custom.PASSWORD}
-
-
 
 functions:
   hello:
@@ -264,10 +261,20 @@ functions:
           method: get
           path: sendEmail
           cors: true
-          
-          
-  
-
+  getAllPujaris:
+    handler: functions/index.getAllPujaris
+    events:
+    - http:
+          method: get
+          path: pujaris
+          cors: true
+  createPujari:
+    handler: functions/index.createPujari
+    events:
+    - http:
+          method: post
+          path: pujaris
+          cors: true
 
 # you can add CloudFormation resource templates here
 # Create our resources with separate CloudFormation templates
@@ -287,7 +294,7 @@ resources:
     RouteTableAssociationSubnetB: ${file(./resources/RouteTableAssociationSubnetB.yml)}
     RouteTableAssociationSubnetC: ${file(./resources/RouteTableAssociationSubnetC.yml)}
     MySqlRDSInstance: ${file(./resources/MySqlRDSInstance.yml)}
-    # s3-bucket: ${file(resources/s3-bucket.yml)}  
+    # s3-bucket: ${file(resources/s3-bucket.yml)}
     # CognitoAuthRole: ${file(resources/CognitoAuthRole.yml)}
     # CognitoIdentityPool: ${file(resources/CognitoIdentityPool.yml)}
     # CognitoIdentityPoolRoles: ${file(resources/CognitoIdentityPoolRoles.yml)}

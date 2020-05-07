@@ -14,11 +14,15 @@
     "dialect": "mysql"
   },
   "development": {
-    "username": "master",
+    "username": "root",
     "password": "password",
-    "database": "onlinesastry",
-    "host": "onlinesastry-dev.clof0uqxdcvt.us-east-1.rds.amazonaws.com",
-    "dialect": "mysql"
+    "database": "anudeep",
+    "host": "3.22.101.152",
+    "dialect": "mysql",
+    "define":{
+      "timestamps":false,
+      "defaultPrimaryKey": false
+    }
   },
   "test": {
     "username": "root",

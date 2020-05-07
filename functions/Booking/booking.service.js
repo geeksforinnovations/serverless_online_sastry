@@ -26,7 +26,7 @@ module.exports.getAllBookings = async () => {
       .findAll({
         include: [
           {
-            model: dbModels.Puja,
+            model: dbModels.Pujas,
             required: true,
             as: 'puja'
           }
@@ -46,7 +46,7 @@ module.exports.getBookingsByPhoneNumber = async (phoneNumber) => {
       },
       include: [
         {
-          model: dbModels.Puja,
+          model: dbModels.Pujas,
           required: true,
           attributes: ['id', 'name', 'timeInHrs', 'pujaType', 'cost', 'imageId'],
           as: "puja"

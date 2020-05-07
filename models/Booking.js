@@ -119,7 +119,7 @@ module.exports = (sequelize, DataTypes) => {
   Booking.associate = function (models) {
     // associations can be defined here
    // puja.belongsTo(Booking)
-   Booking.belongsTo(models.Puja, {as: 'puja'});
+   Booking.belongsTo(models.Pujas, {as: 'puja'});
   };
   return Booking;
 };

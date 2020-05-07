@@ -12,7 +12,7 @@ module.exports = async (event, context, callback) => {
     //   ,requiredThings:'',
     //   pujaType:'Offline',cost:10000,pujaLanguageIds:[1,2,3],imageId:'test'}
 
-    const Languages = dbModels.Puja.hasMany(dbModels.PujaLanguage, { as: 'languages', foreignKey: 'pujaid' });
+    const Languages = dbModels.Pujas.hasMany(dbModels.PujaLanguages, { as: 'languages', foreignKey: 'pujaid' });
     if (puja.pujaLanguageIds != null && Array.isArray(puja.pujaLanguageIds))
       puja.pujaLanguageIds.map(element => {
         pujaLanguages.push({ languageId: element });

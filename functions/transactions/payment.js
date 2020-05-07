@@ -9,7 +9,7 @@ module.exports = async (event, context) => {
     const description = "Puja charge";
 
     try {
-        const selectedPuja = await dbModels.Puja.findOne({ where: { id: pujaId } });
+        const selectedPuja = await dbModels.Pujas.findOne({ where: { id: pujaId } });
         const description = "charges for " + selectedPuja.name + ".";
        
         const customer = await stripe.charges.create({

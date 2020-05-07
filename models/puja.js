@@ -3,7 +3,7 @@ var validator = require('validator');
 var pujaLanguages = require('./pujaLanguages');
 
 module.exports = (sequelize, DataTypes) => {
-  var Puja = sequelize.define('Puja', {
+  var Puja = sequelize.define('Pujas', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -86,7 +86,7 @@ module.exports = (sequelize, DataTypes) => {
 
   }, {});
   Puja.associate = function (models) {
-    Puja.hasMany(models.PujaLanguage);
+    Puja.hasMany(models.PujaLanguages);
    // Puja.hasMany(models.Booking);
   };
   return Puja;

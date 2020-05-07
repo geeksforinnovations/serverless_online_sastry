@@ -3,7 +3,7 @@ const helpers = require("../../utils/helpers");
 
 module.exports = async (event, context, callback) => {
   try {
-    const languages = await dbModels.Language
+    const languages = await dbModels.Languages
       .findAll({
         attributes: ['id','name'],
       });
