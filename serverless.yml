@@ -275,6 +275,13 @@ functions:
           method: post
           path: pujaris
           cors: true
+  updatePujariStatus:
+    handler: functions/index.updatePujariStatus
+    events:
+    - http:
+          method: post
+          path: updatePujariStatus/{id}
+          cors: true
 
 # you can add CloudFormation resource templates here
 # Create our resources with separate CloudFormation templates

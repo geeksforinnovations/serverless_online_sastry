@@ -38,3 +38,30 @@ module.exports.getAllPujaris = async () => {
       throw error
     }
   }
+
+
+// sample payload
+//   {
+//     "pujariActive": 0
+// }
+  module.exports.updatePujariStatus = async (pujariId,pujariData) => {
+    try {
+      const pujari = await dbModels.Pujari
+        .update({ pujariActive:pujariData.pujariActive,
+        firstName:pujariData.firstName,description: pujariData.description,
+        contactNo: pujariData.contactNo, address1: pujariData.address1,
+        address2: pujariData.address2, pujariDataType: pujariData.pujariDataType,
+        city: pujariData.city,country: pujariData.country, pujariDataTimeZone: pujariData.pujariDataTimeZone,
+        updated_date: pujariData.updated_date,Last_updated_by: pujariData.Last_updated_by
+
+      },
+        {
+          where: {
+            id: pujariId
+         }
+        });
+      return "updated";
+    } catch (error) {
+      throw error
+    }
+  }
