@@ -44,7 +44,7 @@ module.exports.getAllPujaris = async () => {
 //   {
 //     "pujariActive": 0
 // }
-  module.exports.updatePujariStatus = async (pujariId,pujariData) => {
+  module.exports.updatePujari= async (pujariId,pujariData) => {
     try {
       const pujari = await dbModels.Pujari
         .update({ pujariActive:pujariData.pujariActive,
