@@ -1,5 +1,5 @@
 app: geeks4innovations
-service: online-sastry # NOTE: update this with your service name
+service: vinay-online-sastry # NOTE: update this with your service name
 
 plugins:
   - serverless-dotenv-plugin
@@ -287,20 +287,20 @@ functions:
 # Create our resources with separate CloudFormation templates
 resources:
   Resources:
-    ServerlessInternetGateway: ${file(./resources/ServerlessInternetGateway.yml)}
-    ServerlessVPC: ${file(./resources/ServerlessVPC.yml)}
-    ServerlessVPCGA: ${file(./resources/ServerlessVPCGA.yml)}
-    ServerlessSubnetA: ${file(./resources/ServerlessSubnetA.yml)}
-    ServerlessSubnetB: ${file(./resources/ServerlessSubnetB.yml)}
-    ServerlessSubnetC: ${file(./resources/ServerlessSubnetC.yml)}
-    ServerlessSubnetGroup: ${file(./resources/ServerlessSubnetGroup.yml)}
-    ServerlessSecurityGroup: ${file(./resources/ServerlessSecurityGroup.yml)}
-    RouteTablePublic: ${file(./resources/RouteTablePublic.yml)}
-    RoutePublic: ${file(./resources/RoutePublic.yml)}
-    RouteTableAssociationSubnetA: ${file(./resources/RouteTableAssociationSubnetA.yml)}
-    RouteTableAssociationSubnetB: ${file(./resources/RouteTableAssociationSubnetB.yml)}
-    RouteTableAssociationSubnetC: ${file(./resources/RouteTableAssociationSubnetC.yml)}
-    MySqlRDSInstance: ${file(./resources/MySqlRDSInstance.yml)}
+    # ServerlessInternetGateway: ${file(./resources/ServerlessInternetGateway.yml)}
+    # ServerlessVPC: ${file(./resources/ServerlessVPC.yml)}
+    # ServerlessVPCGA: ${file(./resources/ServerlessVPCGA.yml)}
+    # ServerlessSubnetA: ${file(./resources/ServerlessSubnetA.yml)}
+    # ServerlessSubnetB: ${file(./resources/ServerlessSubnetB.yml)}
+    # ServerlessSubnetC: ${file(./resources/ServerlessSubnetC.yml)}
+    # ServerlessSubnetGroup: ${file(./resources/ServerlessSubnetGroup.yml)}
+    # ServerlessSecurityGroup: ${file(./resources/ServerlessSecurityGroup.yml)}
+    # RouteTablePublic: ${file(./resources/RouteTablePublic.yml)}
+    # RoutePublic: ${file(./resources/RoutePublic.yml)}
+    # RouteTableAssociationSubnetA: ${file(./resources/RouteTableAssociationSubnetA.yml)}
+    # RouteTableAssociationSubnetB: ${file(./resources/RouteTableAssociationSubnetB.yml)}
+    # RouteTableAssociationSubnetC: ${file(./resources/RouteTableAssociationSubnetC.yml)}
+    # MySqlRDSInstance: ${file(./resources/MySqlRDSInstance.yml)}
     # s3-bucket: ${file(resources/s3-bucket.yml)}
     # CognitoAuthRole: ${file(resources/CognitoAuthRole.yml)}
     # CognitoIdentityPool: ${file(resources/CognitoIdentityPool.yml)}
