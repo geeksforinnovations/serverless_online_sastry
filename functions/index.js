@@ -31,6 +31,8 @@ const send = require('./email/send')
 const createPujari = require('./pujaris/createPujari')
 const getAllPujaris = require('./pujaris/getAllPujaris')
 const updatePujari = require('./pujaris/updatePujari')
+const getAllPujari_reviews = require('./pujari_reviews/getAllPujari_reviews')
+const createPujari_review = require('./pujari_reviews/createPujari_reviews')
 
 
 
@@ -39,33 +41,35 @@ const updatePujari = require('./pujaris/updatePujari')
 module.exports = {
     readAllPujas: readAllPujas,
     getPujaById: getPujaById,
-    createCustomer:createCustomer,
-    payment:payment,
-    createPuja:createPuja,
-    updatePuja:updatePuja,
-    deletePuja:deletePuja,
-    createFaq:createFaq,
-    updateFaq:updateFaq,
-    deleteFaq:deleteFaq,
+    createCustomer: createCustomer,
+    payment: payment,
+    createPuja: createPuja,
+    updatePuja: updatePuja,
+    deletePuja: deletePuja,
+    createFaq: createFaq,
+    updateFaq: updateFaq,
+    deleteFaq: deleteFaq,
     readAllFaqs: readAllFaqs,
     getFaqById: getFaqById,
-    createBooking:createBooking,
-    deleteBooking:deleteBooking,
-    getAllBookings:getAllBookings,
-    getBookingsByPhoneNumber:getBookingsByPhoneNumber,
-    searchPuja:searchPuja,
-    getLanguages:getLanguages,
+    createBooking: createBooking,
+    deleteBooking: deleteBooking,
+    getAllBookings: getAllBookings,
+    getBookingsByPhoneNumber: getBookingsByPhoneNumber,
+    searchPuja: searchPuja,
+    getLanguages: getLanguages,
     generateOTP: generateOTP,
-    verifyOtp:verifyOtp,
-    cancelBooking:cancelBooking,
-    reschedule:updateBooking,
-    createAppSettings:createAppSettings,
-    getAllAppSettings:getAllAppSettings,
-    updateAppSettings:updateAppSettings,
-    deleteAppSettings:deleteAppSettings,
-    getAppSettingsValueByKey:getAppSettingsValueByKey,
-    sendEmail:send,
-    getAllPujaris:getAllPujaris,
-    createPujari:createPujari,
-    updatePujari:updatePujari
+    verifyOtp: verifyOtp,
+    cancelBooking: cancelBooking,
+    reschedule: updateBooking,
+    createAppSettings: createAppSettings,
+    getAllAppSettings: getAllAppSettings,
+    updateAppSettings: updateAppSettings,
+    deleteAppSettings: deleteAppSettings,
+    getAppSettingsValueByKey: getAppSettingsValueByKey,
+    sendEmail: send,
+    getAllPujaris: getAllPujaris,
+    createPujari: createPujari,
+    updatePujari: updatePujari,
+    getAllPujari_reviews: getAllPujari_reviews,
+    createPujari_review: createPujari_review
 }

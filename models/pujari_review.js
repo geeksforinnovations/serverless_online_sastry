@@ -2,8 +2,8 @@
 var validator = require('validator');
 
 module.exports = (sequelize, DataTypes) => {
-    var Pujari = sequelize.define('Pujari', {
-        PujariId: {
+    var Pujari_reviews = sequelize.define('Pujari_reviews', {
+        Pujari_reviewsId: {
             field: 'id',
             type: DataTypes.NUMBER,
             allowNull: false,
@@ -16,124 +16,85 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
 
-        firstName: {
-            type: DataTypes.STRING,
+        reviewDate: {
+            type: DataTypes.DATE,
             allowNull: false,
+            defaultValue: getDate(),
             validate: {
                 notNull: {
-                    msg: "firstName can't be empty."
+                    msg: "reviewDate can't be empty."
                 }
             }
         },
 
-        lastName: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "lastName can't be empty."
-                }
-            }
-        },
-
-        middleName: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            // validate: {
-            //   notNull: {
-            //     msg: "middleName can't be empty."
-            //   }
-            // }
-        },
-
-        description: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            // validate: {
-            //   notNull: {s
-            //     msg: "lastName can't be empty."
-            //   }
-            // }
-        },
-
-        contactNo: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "contactNo can't be empty."
-                }
-            }
-        },
-
-        address1: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "address1 can't be empty."
-                }
-            }
-        },
-
-        address2: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            // validate: {
-            //   notNull: {
-            //     msg: "address2 can't be empty."
-            //   }
-            // }
-        },
-
-        pujariType: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            // validate: {
-            //   notNull: {
-            //     msg: "pujariType can't be empty."
-            //   }
-            // }
-        },
-
-        city: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "city can't be empty."
-                }
-            }
-        },
-
-        country: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "country can't be empty."
-                }
-            }
-        },
-
-        pujariTimeZone: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            // validate: {
-            //   notNull: {
-            //     msg: "pujariType can't be empty."
-            //   }
-            // }
-        },
-
-        pujariActive: {
+        rating: {
             type: DataTypes.NUMBER,
-            allowNull: true,
-            // validate: {
-            //   notNull: {
-            //     msg: "pujariType can't be empty."
-            //   }
-            // }
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: "rating can't be empty."
+                }
+            }
+        },
+
+        review: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: "review can't be empty."
+                }
+            }
+        },
+
+        userId: {
+            type: DataTypes.NUMBER,
+            allowNull: false,
+            validate: {
+              notNull: {
+                msg: "userId can't be empty."
+              }
+            }
+        },
+
+        pujariId: {
+            type: DataTypes.NUMBER,
+            allowNull: false,
+            validate: {
+              notNull: {
+                msg: "pujariId can't be empty."
+              }
+            }
+        },
+
+        pujaId: {
+            type: DataTypes.NUMBER,
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: "pujaId can't be empty."
+                }
+            }
+        },
+
+        visibleFlag: {
+            type: DataTypes.NUMBER,
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: "visibleFlag can't be empty."
+                }
+            }
+        },
+
+        bookingId: {
+            type: DataTypes.NUMBER,
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: "bookingId can't be empty."
+                }
+            }
         },
 
         created_date: {
@@ -180,12 +141,11 @@ module.exports = (sequelize, DataTypes) => {
 
 
     }, { freezeTableName: true });
-    Pujari.associate = function (models) {
+    Pujari_reviews.associate = function (models) {
         // associations can be defined here
         // Pujari.belongsTo(models.Pujari);
     };
-    Pujari.removeAttribute('PujariId');
-    return Pujari;
+    return Pujari_reviews;
 };
 
 function getDate() {

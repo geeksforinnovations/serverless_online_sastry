@@ -282,7 +282,20 @@ functions:
           method: post
           path: updatePujari/{id}
           cors: true
-
+  createPujari_review:
+    handler: functions/index.createPujari_review
+    events:
+    - http:
+          method: post
+          path: pujari_review
+          cors: true
+  getAllPujari_reviews:
+    handler: functions/index.getAllPujari_reviews
+    events:
+    - http:
+          method: get
+          path: pujari_reviews
+          cors: true
 # you can add CloudFormation resource templates here
 # Create our resources with separate CloudFormation templates
 resources:
