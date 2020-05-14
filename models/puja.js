@@ -83,6 +83,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    created_by: {
+      type: DataTypes.STRING,
+      allowNull: true
+  },
 
   }, {});
   Puja.associate = function (models) {

@@ -30,6 +30,7 @@ const getAppSettingsValueByKey = require('./appSettings/getAppSettingsValueByKey
 const send = require('./email/send')
 const createPujari = require('./pujaris/createPujari')
 const getAllPujaris = require('./pujaris/getAllPujaris')
+const getPujari= require('./pujaris/getPujari')
 const updatePujari = require('./pujaris/updatePujari')
 const getAllPujari_reviews = require('./pujari_reviews/getAllPujari_reviews')
 const createPujari_review = require('./pujari_reviews/createPujari_reviews')
@@ -71,5 +72,6 @@ module.exports = {
     createPujari: createPujari,
     updatePujari: updatePujari,
     getAllPujari_reviews: getAllPujari_reviews,
-    createPujari_review: createPujari_review
+    createPujari_review: createPujari_review,
+    getPujari:getPujari
 }
