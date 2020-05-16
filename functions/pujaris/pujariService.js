@@ -43,6 +43,17 @@ module.exports.getAllPujaris = async () => {
   }
 }
 
+module.exports.getPujari = async (id) => {
+  try {
+    return await dbModels.Pujari.findOne({
+        where: { id: id },
+    });
+} catch (error) {
+    console.error('unable to get by id', error)
+    throw error
+
+}
+}
 
 // sample payload
 //   {
