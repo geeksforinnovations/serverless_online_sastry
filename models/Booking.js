@@ -4,19 +4,39 @@ var validator = require('validator');
 
 module.exports = (sequelize, DataTypes) => {
   const Booking = sequelize.define('Booking', {
-    pujaId: {
+    bookingId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      field: "id",
+      primaryKey: true,
+      autoIncrement: true,
       validate: {
         notNull: {
           msg: "Puja can't be null or empty"
         },
         isInt: {
-            msg:"Enter valid value for puja."
+          msg: "Enter valid value for puja."
         },
         min: 1
       }
     },
+
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: getDate(),
+      validate: {
+        notNull: {
+          msg: "date can't be empty."
+        }
+      }
+    },
+
+    status: {
+      type: DataTypes.ENUM,
+      values: ['Active', 'Completed', 'cancelled']
+    },
+
     languageId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -25,37 +45,27 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Language id can't be null or empty."
         },
         isInt: {
-            msg:"Enter valid value for language id."
+          msg: "Enter valid value for language id. language Id should be a number"
         },
         min: 1
       }
     },
-    name: {
-       type: DataTypes.STRING,
-       allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Name can't be empty."
-        },
-        notEmpty:
-        {
-          msg: "Name can't be empty."
-        }
-      }
-    },
-    phoneNumber: {
-      type: DataTypes.STRING,
+
+    userId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Phone number can't be empty."
+          msg: "userId can't be null or empty."
         },
-        notNull: {
-          msg: "Phone number can't be empty."
-        }
+        isInt: {
+          msg: "Enter valid value for userId. should be a number"
+        },
+        min: 1
       }
     },
-    bookingDate: {
+
+    pujaStartDate: {
       type: DataTypes.DATE,
       allowNull: false,
       validate: {
@@ -63,41 +73,57 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Please enter valid value for Booking date.'
         },
         notNull: {
-          msg: "Booking date can't be empty."
+          msg: "pujaStartDate can't be empty."
         }
       }
     },
-    addressLine1: {
-      type: DataTypes.STRING,
+
+    pujaEndDate: {
+      type: DataTypes.DATE,
       allowNull: false,
-      // validate: {
-      //   notNull: {
-      //     msg: "Address line1 can't be null."
-      //   },
-      //   notEmpty:
-      //   {
-      //     msg: "Address line1 can't be empty."
-      //   }
-      // }
+      validate: {
+        isDate: {
+          msg: 'Please enter valid value for Booking date.'
+        },
+        notNull: {
+          msg: "pujaEndDate can't be empty."
+        }
+      }
     },
-    addressLine2: {
-      type: DataTypes.STRING,
+
+    pujariId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      // validate: {
-      //   notNull: {
-      //     msg: "Address line2 can't be null."
-      //   },
-      //   notEmpty:
-      //   {
-      //     msg: "Name can't be empty."
-      //   }
-      // }
+      validate: {
+        notNull: {
+          msg: "pujariId can't be null or empty."
+        },
+        isInt: {
+          msg: "Enter valid value for pujariId. should be a number"
+        },
+        min: 1
+      }
     },
-    requirePujaType:{
-      type:   DataTypes.ENUM,
-      allowNull:false,
+
+    pujaId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "pujaId can't be null or empty."
+        },
+        isInt: {
+          msg: "Enter valid value for pujaId. should be a number"
+        },
+        min: 1
+      }
+    },
+
+    pujaType: {
+      type: DataTypes.ENUM,
+      allowNull: false,
       values: ['Offline', 'Online'],
-      validate:{
+      validate: {
         notNull: {
           msg: "Puja type can't be null."
         },
@@ -107,19 +133,67 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    videoCallUserName:{
-      type:   DataTypes.STRING
-    },
-    status:{
-      type:   DataTypes.ENUM,
-      values: ['Active', 'Completed','cancelled']
+
+    created_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: getDate(),
+      validate: {
+        notNull: {
+          msg: "created_date can't be empty."
+        }
+      }
     },
 
-  }, {freezeTableName: true});
+    created_by: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariType can't be empty."
+      //   }
+      // }
+    },
+
+    updated_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: getDate(),
+      validate: {
+        notNull: {
+          msg: "updated_date can't be empty."
+        }
+      }
+    },
+
+    Last_updated_by: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariType can't be empty."
+      //   }
+      // }
+    },
+
+
+  }, { freezeTableName: true });
   Booking.associate = function (models) {
     // associations can be defined here
-   // puja.belongsTo(Booking)
-   Booking.belongsTo(models.Pujas, {as: 'puja'});
+    // puja.belongsTo(Booking)
+    Booking.belongsTo(models.Pujas, { as: 'puja' });
   };
   return Booking;
 };
+
+function getDate() {
+  var date;
+  date = new Date();
+  date = date.getUTCFullYear() + '-' +
+      ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
+      ('00' + date.getUTCDate()).slice(-2) + ' ' +
+      ('00' + date.getUTCHours()).slice(-2) + ':' +
+      ('00' + date.getUTCMinutes()).slice(-2) + ':' +
+      ('00' + date.getUTCSeconds()).slice(-2);
+  return date;
+}

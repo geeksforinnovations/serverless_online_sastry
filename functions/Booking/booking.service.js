@@ -6,11 +6,12 @@ module.exports.createBooking = async (booking) => {
   try {
     const createdBooking = await dbModels.Booking
       .create({
-        pujaId: booking.pujaId, languageId: booking.languageId, name: booking.name,
-        phoneNumber: booking.phoneNumber, bookingDate: booking.bookingDate,
-        addressLine1: booking.addressLine1, addressLine2: booking.addressLine2,
-        requirePujaType: booking.requirePujaType, videoCallUserName: booking.videoCallUserName,
-        status: booking.status
+        date: booking.date, status: booking.status,
+        languageId: booking.languageId, userId: booking.userId,
+        pujaStartDate: booking.pujaStartDate, pujaEndDate: booking.pujaEndDate,
+        pujariId: booking.pujariId, pujaId: booking.pujaId,
+        pujaType: booking.pujaType, created_date: booking.created_date, created_by: booking.created_by, updated_date: booking.updated_date,
+        Last_updated_by: booking.Last_updated_by
       });
     return createdBooking;
 
