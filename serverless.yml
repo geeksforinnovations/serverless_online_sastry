@@ -261,6 +261,13 @@ functions:
           method: get
           path: sendEmail
           cors: true
+  sendEmails:
+    handler: functions/index.sendEmails
+    events:
+      - http:
+          method: post
+          path: sendEmails
+          cors: true
   getAllPujaris:
     handler: functions/index.getAllPujaris
     events:

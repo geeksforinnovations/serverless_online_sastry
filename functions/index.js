@@ -34,6 +34,7 @@ const getPujari= require('./pujaris/getPujari')
 const updatePujari = require('./pujaris/updatePujari')
 const getAllPujari_reviews = require('./pujari_reviews/getAllPujari_reviews')
 const createPujari_review = require('./pujari_reviews/createPujari_reviews')
+const sendEmails = require('./email/sendEmails')
 
 
 
@@ -68,6 +69,7 @@ module.exports = {
     deleteAppSettings: deleteAppSettings,
     getAppSettingsValueByKey: getAppSettingsValueByKey,
     sendEmail: send,
+    sendEmails: sendEmails,
     getAllPujaris: getAllPujaris,
     createPujari: createPujari,
     updatePujari: updatePujari,

@@ -8,6 +8,7 @@
     "debug": "export SLS_DEBUG=* && node --debug ./node_modules/.bin/serverless offline -s dev"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.1.1",
     "mysql2": "^2.0.0",
     "sequelize": "^5.21.1",
     "sequelize-test-helpers": "^1.2.2",
