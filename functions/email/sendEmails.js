@@ -6,27 +6,40 @@ module.exports = async (event, context, callback) => {
     const emailBody = JSON.parse(event.body);
     const sgMail = require('@sendgrid/mail');
     console.log(event.body);
-    console.log(emailBody.to);
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-const msg = {
+const msg = [{
   to: emailBody.to ,
   from: emailBody.from,
   cc: emailBody.cc,
   bcc:emailBody.bcc,
-  subject:emailBody.subject,
-  text: emailBody.text,
-  html: emailBody.html,
-};
+  templateId: 'd-3d362feadf224179807b3b2298957106',
+  dynamic_template_data: {
+    name: emailBody.name,
+    orderId: emailBody.orderId,
+  },
+},
+{
+  to: emailBody.admin ,
+  from: emailBody.from,
+  cc: emailBody.cc,
+  bcc: emailBody.poojariEmails,
+  templateId: 'd-0fcf2cbbf1754aaf84d24bb9bb3ae369',
+  dynamic_template_data: {
+    orderId: emailBody.orderId,
+  },
+},
+];
 
-// { sample payload
+// {
 //   "to": "aksanudeep@gmail.com",
+//   "admin": "aksanudeep@gmail.com",
 //   "from": "geeks4innovations@gmail.com",
 //   "cc" : "manikumarkv@gmail.com",
 //   "bcc" : "vinay.ananthu@gmail.com",
-//   "subject": "Reservation pending ",
-//   "text": "Sample static test",
-//   "html": "<strong>please ignore</strong>"
+//   "name": "AKs Ayyagari",
+//   "poojariEmails" : [ "krish@intelsavvy.com", "krishayyagari4@gmail.com"],
+//   "orderId": 123
 // }
     return await sgMail.send(msg);;
   } catch (error) {
