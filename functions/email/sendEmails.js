@@ -68,8 +68,10 @@ module.exports = async (event, context, callback) => {
     //   "cc" : "manikumarkv@gmail.com",
     //   "bcc" : "vinay.ananthu@gmail.com",
     //   "name": "AKs Ayyagari",
+    //   "poojariName":"sastry",
     //   "poojariEmails" : [ "krish@intelsavvy.com", "krishayyagari4@gmail.com"],
-    //   "orderId": 123
+    //   "orderId": 12345622,
+    //   "type": "poojariConfirmed"
     // }
   } catch (error) {
     return helpers.failure({ message: error.response.body });
