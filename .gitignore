@@ -4,4 +4,6 @@ jspm_packages
 .env
 
 # Serverless directories
-.serverless
+.serverlesssendgrid.env
+sendgrid.env
+sendgrid.env
