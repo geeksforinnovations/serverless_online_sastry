@@ -12,9 +12,8 @@ module.exports.createPujari = async (pujari) => {
         address2: pujari.address2, pujariType: pujari.pujariType,
         city: pujari.city, country: pujari.country, pujariTimeZone: pujari.pujariTimeZone,
         pujariActive: pujari.pujariActive, created_date: pujari.created_date, created_by: pujari.created_by,
-        updated_date: pujari.updated_date, Last_updated_by: pujari.Last_updated_by
+        updated_date: pujari.updated_date, Last_updated_by: pujari.Last_updated_by,imageId:pujari.imageId
       });
-      console.log(createdPujari);
     return createdPujari;
 
   } catch (error) {
@@ -27,7 +26,7 @@ module.exports.getAllPujaris = async () => {
     const pujari = await dbModels.Pujari
       .findAll({
         attributes: [
-          `id`, `firstName`, `lastName`, `middleName`, `description`, `contactNo`, `address1`, `address2`, `pujariType`, `city`, `country`, `pujariTimeZone`, `pujariActive`, `created_date`, `created_by`, `updated_date`, `Last_updated_by`
+          `id`, `firstName`, `lastName`, `middleName`, `description`, `contactNo`, `address1`, `address2`, `pujariType`, `city`, `country`, `pujariTimeZone`, `pujariActive`, `created_date`, `created_by`, `updated_date`, `Last_updated_by`,`imageId`
         ]
         // include: [
         //   {

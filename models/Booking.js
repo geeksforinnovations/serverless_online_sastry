@@ -93,16 +93,17 @@ module.exports = (sequelize, DataTypes) => {
 
     pujariId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "pujariId can't be null or empty."
-        },
-        isInt: {
-          msg: "Enter valid value for pujariId. should be a number"
-        },
-        min: 1
-      }
+      allowNull: true,
+      defaultValue: null
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariId can't be null or empty."
+      //   },
+      //   isInt: {
+      //     msg: "Enter valid value for pujariId. should be a number"
+      //   },
+      //   min: 1
+      // }
     },
 
     pujaId: {
@@ -190,10 +191,10 @@ function getDate() {
   var date;
   date = new Date();
   date = date.getUTCFullYear() + '-' +
-      ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-      ('00' + date.getUTCDate()).slice(-2) + ' ' +
-      ('00' + date.getUTCHours()).slice(-2) + ':' +
-      ('00' + date.getUTCMinutes()).slice(-2) + ':' +
-      ('00' + date.getUTCSeconds()).slice(-2);
+    ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
+    ('00' + date.getUTCDate()).slice(-2) + ' ' +
+    ('00' + date.getUTCHours()).slice(-2) + ':' +
+    ('00' + date.getUTCMinutes()).slice(-2) + ':' +
+    ('00' + date.getUTCSeconds()).slice(-2);
   return date;
 }

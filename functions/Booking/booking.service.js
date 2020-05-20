@@ -9,7 +9,7 @@ module.exports.createBooking = async (booking) => {
         date: booking.date, status: booking.status,
         languageId: booking.languageId, userId: booking.userId,
         pujaStartDate: booking.pujaStartDate, pujaEndDate: booking.pujaEndDate,
-        pujariId: booking.pujariId, pujaId: booking.pujaId,
+        pujaId: booking.pujaId,
         pujaType: booking.pujaType, created_date: booking.created_date, created_by: booking.created_by, updated_date: booking.updated_date,
         Last_updated_by: booking.Last_updated_by
       });
@@ -21,7 +21,9 @@ module.exports.createBooking = async (booking) => {
 }
 
 
-module.exports.getAllBookings = async () => {
+module.exports.getAllBookings = async (event) => {
+  queryParams = event.queryStringParameters;
+  // validateQueryParams()
   try {
     const bookings = await dbModels.Booking
       .findAll({
@@ -31,7 +33,8 @@ module.exports.getAllBookings = async () => {
             required: true,
             as: 'puja'
           }
-        ]
+        ],
+        where:event.queryStringParameters
       });
     return bookings;
   } catch (error) {

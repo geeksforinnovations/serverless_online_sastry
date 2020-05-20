@@ -135,6 +135,22 @@ module.exports = (sequelize, DataTypes) => {
             //   }
             // }
         },
+        pujariActive: {
+            type: DataTypes.ENUM,
+           values: ['accepted', 'requested', 'denied'],
+            allowNull: false,
+            validate: {
+              notNull: {
+                msg: "Type can't be null."
+              },
+              customValidator(value) {
+                var types = ['accepted', 'requested', 'denied']
+                if (!types.includes(value)) {
+                  throw new Error("Enter valid value for pujariActive.");
+                }
+              }
+            }
+          },
 
         created_date: {
             type: DataTypes.DATE,
@@ -177,7 +193,15 @@ module.exports = (sequelize, DataTypes) => {
             //   }
             // }
         },
-
+        imageId: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            // validate: {
+            //   notNull: {
+            //     msg: "pujariType can't be empty."
+            //   }
+            // }
+        },
 
     }, { freezeTableName: true });
     Pujari.associate = function (models) {
