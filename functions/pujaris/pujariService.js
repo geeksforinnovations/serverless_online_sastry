@@ -75,7 +75,7 @@ module.exports.updatePujari = async (pujariId, pujariData) => {
             id: pujariId
           }
         });
-    return "updated";
+    return pujari;
   } catch (error) {
     throw error
   }

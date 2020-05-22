@@ -35,9 +35,9 @@ const updatePujari = require('./pujaris/updatePujari')
 const getAllPujari_reviews = require('./pujari_reviews/getAllPujari_reviews')
 const createPujari_review = require('./pujari_reviews/createPujari_reviews')
 const sendEmails = require('./email/sendEmails')
-
-
-
+const getAllBooking_pendings = require('./Booking_Pendings/getAllBooking_pendings')
+const createBooking_pendings = require('./Booking_Pendings/createBooking_pendings')
+const updateBooking_Pendings = require('./Booking_Pendings/updateBooking_pendings')
 
 
 module.exports = {
@@ -75,5 +75,8 @@ module.exports = {
     updatePujari: updatePujari,
     getAllPujari_reviews: getAllPujari_reviews,
     createPujari_review: createPujari_review,
-    getPujari:getPujari
+    getPujari:getPujari,
+    getAllBooking_pendings:getAllBooking_pendings,
+    createBooking_pendings:createBooking_pendings,
+    updateBooking_Pendings:updateBooking_Pendings
 }

@@ -310,6 +310,27 @@ functions:
           method: get
           path: pujari_reviews
           cors: true
+  getAllBooking_pendings:
+    handler: functions/index.getAllBooking_pendings
+    events:
+    - http:
+          method: get
+          path: booking_pendings
+          cors: true
+  createBooking_pendings:
+    handler: functions/index.createBooking_pendings
+    events:
+    - http:
+          method: post
+          path: booking_pendings
+          cors: true
+  updateBooking_pendings:
+    handler: functions/index.updateBooking_Pendings
+    events:
+    - http:
+          method: post
+          path: updateBooking_pendings/{id}
+          cors: true
 # you can add CloudFormation resource templates here
 # Create our resources with separate CloudFormation templates
 resources:
