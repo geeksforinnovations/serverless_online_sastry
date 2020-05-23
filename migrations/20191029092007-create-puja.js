@@ -30,22 +30,24 @@ module.exports = {
       imageId: {
         type: Sequelize.STRING
       },
-      created_date: {
+      cost: {
+        type: Sequelize.FLOAT,
+      },
+      createdDate: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
-      created_by: {
-        allowNull: false,
+      createdBy: {
         type: Sequelize.STRING(50),
       },
-      updated_date: {
+      updatedDate: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal(
           "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
         ),
       },
-      Last_updated_by: {
+      lastUpdatedBy: {
         type: Sequelize.STRING(50),
       },
     });

@@ -49,23 +49,23 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
-      pujariActive: {
-        type: Sequelize.BOOLEAN
+      status: {
+        type: Sequelize.ENUM,
+        values: ['accepted', 'requested', 'denied','inActive'],
       },
-      created_date: {
+      createdDate: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
-      created_by: {
-        allowNull: false,
+      createdBy: {
         type: Sequelize.STRING(50)
       },
-      updated_date: {
+      updatedDate: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
-      Last_updated_by: {
+      LastUpdatedBy: {
         type: Sequelize.STRING(50)
       }
     });
