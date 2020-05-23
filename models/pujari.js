@@ -125,26 +125,16 @@ module.exports = (sequelize, DataTypes) => {
             //   }
             // }
         },
-
-        pujariActive: {
-            type: DataTypes.NUMBER,
-            allowNull: true,
-            // validate: {
-            //   notNull: {
-            //     msg: "pujariType can't be empty."
-            //   }
-            // }
-        },
         pujariActive: {
             type: DataTypes.ENUM,
-           values: ['accepted', 'requested', 'denied'],
+           values: ['accepted', 'requested', 'denied','inActive'],
             allowNull: false,
             validate: {
               notNull: {
                 msg: "Type can't be null."
               },
               customValidator(value) {
-                var types = ['accepted', 'requested', 'denied']
+                var types = ['accepted', 'requested', 'denied','inActive']
                 if (!types.includes(value)) {
                   throw new Error("Enter valid value for pujariActive.");
                 }

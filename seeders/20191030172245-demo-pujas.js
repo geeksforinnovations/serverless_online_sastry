@@ -8,20 +8,22 @@ module.exports = {
       description: 'Aksharabhyasam is also known as Vidyarambham is a religious function in which the baby is given initiation for education. By doing this ceremony as per shastras the child is ready to receive formal school education with the blessings of Lord Ganesha and Mata Saraswati. This ceremony is one of the Sodas Sankara ( 16 Sanskaras) which every Hindu has to undergo. The meaning of Akshara is alphabets in Sanskrit. Abhyasam means to practice. Aksharabhyasam aims at giving the initial practice of writing letters to the child. this ceremony is generally performed when the baby turns two or two and a half years old.',
       about: 'Aksharabhyasam is one of the 16 sanskaras to be performed, in which the baby when attains age above two years is initiated to write the first letter with the blessings for mata saraswati and lord ganesh and start their schooling life.',
       timeInHrs: 1.0,
-      requiredThings: null,
+      requiredThings: '{bananas , cocunts, camphor}',
       pujaType: 'Both', // Online/ AtHome
-      cost: 3000,
-      imageId: ''
+      cost: 75,
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Annaprasanam',
       description: 'Annaprasanam is a Sanskrit word which means Grain initiation or Rice feeding. This ceremony is conducted when the baby is ready to make the transition of food intake from a liquid diet to solid diet. This ceremony begins with a pooja or a homam for the baby’s health and happiness, followed by the symbolic feeding of the Prasadam or the first bite of solid food usually Paluannam or Payasam.',
       about: 'Annaprasanam means introducing solid food to the child usually feeding Payasam or Paluannam. After this ritual is carried out, the child can be introduced to different foods.',
       timeInHrs: 1.0,
-      requiredThings: null,
-      pujaType: 'Both', // Online/ AtHome
+      requiredThings: '{bananas , cocunts, camphor}',
+      pujaType: 'Online', // Online/ AtHome
       cost: 2500,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Barasala (Namakaranam)',
@@ -31,7 +33,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 3500,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Karna Vedha',
@@ -41,7 +44,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 2500,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Nischitartham',
@@ -51,7 +55,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 7000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Marriage',
@@ -61,7 +66,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 20000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Upanayanam',
@@ -71,7 +77,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 8000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Sashtiapthapoorthi (60th Birthday)',
@@ -81,7 +88,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 10000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Bhima Ratha Shanti (70th Birthday)',
@@ -91,7 +99,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 10000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Sathabhishekam (80th Birthday)',
@@ -101,7 +110,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 10000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Gruhapravesam',
@@ -111,7 +121,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 15000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Fix Your Muhurtham',
@@ -121,7 +132,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 2000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Seemantham',
@@ -131,7 +143,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 5000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Dhanishta Panchakam Shanti',
@@ -141,7 +154,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 12000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Kuja Rahu Sandhi Shanti',
@@ -151,7 +165,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 13000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Rahu Brihaspati Sandhi Shanti',
@@ -161,7 +176,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 12500,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Shukra Aditya Sandhi Shanti',
@@ -171,7 +187,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 15000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Ayushya Homam',
@@ -181,7 +198,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 20000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Chandi Homam',
@@ -191,7 +209,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 20000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Dhanvantari Homam',
@@ -201,7 +220,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 25000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Durga Homam',
@@ -211,7 +231,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 22000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Ganapathi Homam',
@@ -221,7 +242,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 15000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Hayagreeva Homam',
@@ -231,7 +253,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 11000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Kala Bhairava Homam',
@@ -241,7 +264,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 13000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Karthaveeryarjuna Homam',
@@ -251,7 +275,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 15000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Lakshmi Ganapathi Homam',
@@ -261,7 +286,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 25000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Lakshmi Kubera Homam',
@@ -271,7 +297,8 @@ module.exports = {
       requiredThings: null,
       pujaType: 'Both', // Online/ AtHome
       cost: 15000,
-      imageId: ''
+      imageId: '',
+      createdBy:'seeders'
   },
   {
       name: 'Lakshmi Narasimha Homam',

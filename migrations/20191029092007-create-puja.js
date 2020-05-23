@@ -1,41 +1,58 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Pujas', {
+    return queryInterface.createTable("Pujas", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
+        type: Sequelize.STRING,
+      },
+      description: {
+        type: Sequelize.STRING,
+      },
+      about: {
+        type: Sequelize.STRING,
+      },
+      timeInHrs: {
+        type: Sequelize.FLOAT,
+      },
+      requiredThings: {
+        type: Sequelize.JSON,
+      },
+      pujaType: {
+        type: Sequelize.ENUM,
+        values: ["Offline", "Online", "Both"],
+      },
+      imageId: {
         type: Sequelize.STRING
       },
-      description:{
-        type: Sequelize.STRING
+      cost: {
+        type: Sequelize.FLOAT,
       },
-      about:{
-        type: Sequelize.STRING
-      },
-      timeInHrs:{
-        type: Sequelize.FLOAT
-      },
-      requiredThings:{
-        type: Sequelize.JSON
-      },
-      createdAt: {
+      createdDate: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
-      updatedAt: {
-        allowNull: false,
+      createdBy: {
+        type: Sequelize.STRING(50),
+      },
+      updatedDate: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-      }
+        defaultValue: Sequelize.literal(
+          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        ),
+      },
+      lastUpdatedBy: {
+        type: Sequelize.STRING(50),
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Pujas');
-  }
+    return queryInterface.dropTable("Pujas");
+  },
 };
