@@ -2,9 +2,4 @@
 node_modules
 jspm_packages
 .env
-
-# Serverless directories
-.serverlesssendgrid.env
-sendgrid.env
-sendgrid.env
 .serverless
