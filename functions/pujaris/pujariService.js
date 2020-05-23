@@ -1,5 +1,5 @@
 const dbModels = require('../../models')
-
+var constants = require('../../utils/constants');
 
 
 module.exports.createPujari = async (pujari) => {
@@ -43,7 +43,7 @@ module.exports.getAllPujaris = async () => {
                   }],
           }
       ],
-      where:{"status":"accepted"}
+      where:{"status":constants.ACCEPTED}
       });
     return pujari;
   } catch (error) {

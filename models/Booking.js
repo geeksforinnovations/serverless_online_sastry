@@ -1,6 +1,7 @@
 'use strict';
 const puja = require('./puja')
 var validator = require('validator');
+var constants = require('../utils/constants')
 
 module.exports = (sequelize, DataTypes) => {
   const Booking = sequelize.define('Booking', {
@@ -34,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
 
     status: {
       type: DataTypes.ENUM,
-      values: ['Active', 'Completed', 'cancelled']
+      values: [constants.ACTIVE, constants.COMPLETED, constants.CANCELLED]
     },
 
     languageId: {
@@ -123,7 +124,7 @@ module.exports = (sequelize, DataTypes) => {
     pujaType: {
       type: DataTypes.ENUM,
       allowNull: false,
-      values: ['Offline', 'Online'],
+      values: [constants.OFFLINE, constants.ONLINE],
       validate: {
         notNull: {
           msg: "Puja type can't be null."
@@ -135,17 +136,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
 
-    customerName:{
-      type: DataTypes.STRING,
-      allowNull: true,
-      // validate: {
-      //   notNull: {
-      //     msg: "pujariType can't be empty."
-      //   }
-      // }
-    },
-    
-    email:{
+    customerName: {
       type: DataTypes.STRING,
       allowNull: true,
       // validate: {
@@ -155,7 +146,7 @@ module.exports = (sequelize, DataTypes) => {
       // }
     },
 
-    phone:{
+    email: {
       type: DataTypes.STRING,
       allowNull: true,
       // validate: {
@@ -164,20 +155,30 @@ module.exports = (sequelize, DataTypes) => {
       //   }
       // }
     },
-    
-    
+
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariType can't be empty."
+      //   }
+      // }
+    },
+
+
     createdDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: getDate(),
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       validate: {
-          notNull: {
-              msg: "created_date can't be empty."
-          }
+        notNull: {
+          msg: "created_date can't be empty."
+        }
       }
-  },
+    },
 
-  createdBy: {
+    createdBy: {
       type: DataTypes.STRING,
       allowNull: true,
       // validate: {
@@ -185,20 +186,22 @@ module.exports = (sequelize, DataTypes) => {
       //     msg: "pujariType can't be empty."
       //   }
       // }
-  },
+    },
 
-  updatedDate: {
+    updatedDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: getDate(),
+      defaultValue: Sequelize.literal(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+      ),
       validate: {
-          notNull: {
-              msg: "updated_date can't be empty."
-          }
+        notNull: {
+          msg: "updated_date can't be empty."
+        }
       }
-  },
+    },
 
-  lastUpdatedBy: {
+    lastUpdatedBy: {
       type: DataTypes.STRING,
       allowNull: true,
       // validate: {
@@ -206,8 +209,8 @@ module.exports = (sequelize, DataTypes) => {
       //     msg: "pujariType can't be empty."
       //   }
       // }
-  }
-  
+    }
+
   }, { freezeTableName: true });
   Booking.associate = function (models) {
     // associations can be defined here
@@ -216,15 +219,3 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Booking;
 };
-
-function getDate() {
-  var date;
-  date = new Date();
-  date = date.getUTCFullYear() + '-' +
-    ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-    ('00' + date.getUTCDate()).slice(-2) + ' ' +
-    ('00' + date.getUTCHours()).slice(-2) + ':' +
-    ('00' + date.getUTCMinutes()).slice(-2) + ':' +
-    ('00' + date.getUTCSeconds()).slice(-2);
-  return date;
-}

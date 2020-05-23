@@ -1,6 +1,6 @@
 'use strict';
 var validator = require('validator');
-
+var constants = require('../utils/constants');
 module.exports = (sequelize, DataTypes) => {
     var Pujari = sequelize.define('Pujari', {
         // PujariId: {
@@ -127,15 +127,15 @@ module.exports = (sequelize, DataTypes) => {
         },
         status: {
             type: DataTypes.ENUM,
-            values: ['accepted', 'requested', 'denied', 'inactive'],
+            values: [constants.ACCEPTED, constants.REQUESTED, constants.DENIED, constants.INACTIVE],
             allowNull: false,
-            defaultValue: 'requested',
+            defaultValue: constants.REQUESTED,
             validate: {
                 notNull: {
                     msg: "status can't be null."
                 },
                 customValidator(value) {
-                    var types = ['accepted', 'requested', 'denied', 'inactive']
+                    var types = [constants.ACCEPTED, constants.REQUESTED, constants.DENIED, constants.INACTIVE]]
                     if (!types.includes(value)) {
                         throw new Error("Enter valid value for status.");
                     }
@@ -146,7 +146,7 @@ module.exports = (sequelize, DataTypes) => {
         createdDate: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: getDate(),
+            defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
             validate: {
                 notNull: {
                     msg: "created_date can't be empty."
@@ -167,7 +167,9 @@ module.exports = (sequelize, DataTypes) => {
         updatedDate: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: getDate(),
+            defaultValue: Sequelize.literal(
+                "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+            ),
             validate: {
                 notNull: {
                     msg: "updated_date can't be empty."

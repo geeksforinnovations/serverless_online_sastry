@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         createdDate: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: getDate(),
+            defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
             validate: {
                 notNull: {
                     msg: "created_date can't be empty."
@@ -60,7 +60,9 @@ module.exports = (sequelize, DataTypes) => {
         updatedDate: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: getDate(),
+            defaultValue: Sequelize.literal(
+                "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+            ),
             validate: {
                 notNull: {
                     msg: "updated_date can't be empty."
@@ -85,15 +87,3 @@ module.exports = (sequelize, DataTypes) => {
     };
     return PujariLanguages;
 };
-
-function getDate() {
-    var date;
-    date = new Date();
-    date = date.getUTCFullYear() + '-' +
-        ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-        ('00' + date.getUTCDate()).slice(-2) + ' ' +
-        ('00' + date.getUTCHours()).slice(-2) + ':' +
-        ('00' + date.getUTCMinutes()).slice(-2) + ':' +
-        ('00' + date.getUTCSeconds()).slice(-2);
-    return date;
-}

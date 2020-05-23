@@ -1,7 +1,7 @@
 'use strict';
 var validator = require('validator');
 var pujaLanguages = require('./pujaLanguages');
-
+var constants = require('../utils/constants');
 module.exports = (sequelize, DataTypes) => {
   var Puja = sequelize.define('Pujas', {
     name: {
@@ -55,14 +55,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     type: {
       type: DataTypes.ENUM,
-      values: ['Offline', 'Online', 'Both'],
+      values: [constants.OFFLINE, constants.ONLINE, constants.BOTH],
       allowNull: false,
       validate: {
         notNull: {
           msg: "Type can't be null."
         },
         customValidator(value) {
-          var types = ['Offline', 'Online', 'Both']
+          var types = [constants.OFFLINE, constants.ONLINE, constants.BOTH],
           if (!types.includes(value)) {
             throw new Error("Enter valid value for type.");
           }
@@ -85,25 +85,25 @@ module.exports = (sequelize, DataTypes) => {
     },
     status: {
       type: DataTypes.ENUM,
-      values: ['active', 'inactive'],
+      values: [constants.ACTIVE, constants.INACTIVE],
       allowNull: false,
       defaultValue: 'active',
       validate: {
-          notNull: {
-              msg: "Type can't be null."
-          },
-          customValidator(value) {
-              var types = ['active', 'inactive']
-              if (!types.includes(value)) {
-                  throw new Error("Enter valid value for status.");
-              }
+        notNull: {
+          msg: "Type can't be null."
+        },
+        customValidator(value) {
+          var types = [constants.ACTIVE, constants.INACTIVE]
+          if (!types.includes(value)) {
+            throw new Error("Enter valid value for status.");
           }
+        }
       }
-  },
+    },
     createdDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: getDate(),
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       validate: {
         notNull: {
           msg: "created_date can't be empty."
@@ -124,7 +124,9 @@ module.exports = (sequelize, DataTypes) => {
     updatedDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: getDate(),
+      defaultValue: Sequelize.literal(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+      ),
       validate: {
         notNull: {
           msg: "updated_date can't be empty."
@@ -154,10 +156,10 @@ function getDate() {
   var date;
   date = new Date();
   date = date.getUTCFullYear() + '-' +
-      ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-      ('00' + date.getUTCDate()).slice(-2) + ' ' +
-      ('00' + date.getUTCHours()).slice(-2) + ':' +
-      ('00' + date.getUTCMinutes()).slice(-2) + ':' +
-      ('00' + date.getUTCSeconds()).slice(-2);
+    ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
+    ('00' + date.getUTCDate()).slice(-2) + ' ' +
+    ('00' + date.getUTCHours()).slice(-2) + ':' +
+    ('00' + date.getUTCMinutes()).slice(-2) + ':' +
+    ('00' + date.getUTCSeconds()).slice(-2);
   return date;
 }

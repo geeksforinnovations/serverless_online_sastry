@@ -1,7 +1,7 @@
 'use strict';
 const puja = require('./puja')
 var validator = require('validator');
-
+var constants = require('../utils/constants');
 module.exports = (sequelize, DataTypes) => {
   const Booking_Pendings = sequelize.define('Booking_pendings', {
     bookingPendingId: {
@@ -51,14 +51,14 @@ module.exports = (sequelize, DataTypes) => {
 
     status: {
       type: DataTypes.ENUM,
-     values: ['pending', 'accepted', 'denied'],
+      values: [constants.PENDING, constants.ACCEPTED, constants.DENIED],
       allowNull: false,
       validate: {
         notNull: {
           msg: "status can't be null."
         },
         customValidator(value) {
-          var types = ['pending', 'accepted', 'denied']
+          var types = [constants.PENDING, constants.ACCEPTED, constants.DENIED]
           if (!types.includes(value)) {
             throw new Error("Enter valid value for status.");
           }
@@ -69,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
     created_date: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: getDate(),
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       validate: {
         notNull: {
           msg: "created_date can't be empty."
@@ -90,7 +90,9 @@ module.exports = (sequelize, DataTypes) => {
     updated_date: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: getDate(),
+      defaultValue: Sequelize.literal(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+      ),
       validate: {
         notNull: {
           msg: "updated_date can't be empty."
@@ -117,15 +119,3 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Booking_Pendings;
 };
-
-function getDate() {
-  var date;
-  date = new Date();
-  date = date.getUTCFullYear() + '-' +
-      ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-      ('00' + date.getUTCDate()).slice(-2) + ' ' +
-      ('00' + date.getUTCHours()).slice(-2) + ':' +
-      ('00' + date.getUTCMinutes()).slice(-2) + ':' +
-      ('00' + date.getUTCSeconds()).slice(-2);
-  return date;
-}

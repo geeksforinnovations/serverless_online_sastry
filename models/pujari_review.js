@@ -51,9 +51,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.NUMBER,
             allowNull: false,
             validate: {
-              notNull: {
-                msg: "userId can't be empty."
-              }
+                notNull: {
+                    msg: "userId can't be empty."
+                }
             }
         },
 
@@ -61,9 +61,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.NUMBER,
             allowNull: false,
             validate: {
-              notNull: {
-                msg: "pujariId can't be empty."
-              }
+                notNull: {
+                    msg: "pujariId can't be empty."
+                }
             }
         },
 
@@ -97,10 +97,10 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
 
-        created_date: {
+        createdDate: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: getDate(),
+            defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
             validate: {
                 notNull: {
                     msg: "created_date can't be empty."
@@ -118,10 +118,12 @@ module.exports = (sequelize, DataTypes) => {
             // }
         },
 
-        updated_date: {
+        updatedDate: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: getDate(),
+            defaultValue: Sequelize.literal(
+                "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+            ),
             validate: {
                 notNull: {
                     msg: "updated_date can't be empty."
@@ -147,15 +149,3 @@ module.exports = (sequelize, DataTypes) => {
     };
     return Pujari_reviews;
 };
-
-function getDate() {
-    var date;
-    date = new Date();
-    date = date.getUTCFullYear() + '-' +
-        ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-        ('00' + date.getUTCDate()).slice(-2) + ' ' +
-        ('00' + date.getUTCHours()).slice(-2) + ':' +
-        ('00' + date.getUTCMinutes()).slice(-2) + ':' +
-        ('00' + date.getUTCSeconds()).slice(-2);
-    return date;
-}

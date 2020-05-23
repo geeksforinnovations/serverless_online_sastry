@@ -1,5 +1,5 @@
 const dbModels = require('../../models')
-
+var constants = require('../../utils/constants');
 
 
 module.exports.createBooking_pendings = async (booking_pendings) => {
@@ -70,7 +70,7 @@ module.exports.updateBooking_Pendings = async (id,booking_pendings) => {
 module.exports.cancelBookng = async (bookingId) => {
   try {
     const isCancelled = await dbModels.Booking
-      .update({ status: 'Cancelled' }, { where: { id: bookingId } });
+      .update({ status: constants.CANCELLED }, { where: { id: bookingId } });
     return isCancelled
   } catch (error) {
     throw error

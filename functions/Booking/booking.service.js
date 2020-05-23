@@ -1,5 +1,5 @@
 const dbModels = require('../../models')
-
+var constants = require('../../utils/constants');
 
 
 module.exports.createBooking = async (booking) => {
@@ -10,21 +10,31 @@ module.exports.createBooking = async (booking) => {
         languageId: booking.languageId, userId: booking.userId,
         pujaStartDate: booking.pujaStartDate, pujaEndDate: booking.pujaEndDate,
         pujaId: booking.pujaId,
-        pujaType: booking.pujaType, createdDate: booking.createdDate, createdBy: booking.createdBy, updatedDate: booking.updatedDate,
-        lastUpdatedBy: booking.lastUpdatedBy,customerName: booking.customerName,email: booking.email,
+        pujaType: booking.pujaType, customerName: booking.customerName, email: booking.email,
         phone: booking.phone
       });
-      let pujariArray = booking['pujariArray'];
-      createdBooking['bookingPendings'] = [];
-      for (let index = 0; index < pujariArray.length; index++) {
-        const pujariId = pujariArray[index];
-        const bp = await dbModels.Booking_pendings.create({
-          pujariId:pujariId,
-          bookingId:createdBooking['id'],
-          status:'pending'
-        });
-        createdBooking['bookingPendings'] = [...createdBooking['bookingPendings'],bp]
+    let pujariArray = booking['pujariArray'];
+    createdBooking['bookingPendings'] = [];
+
+    let bpArray = pujariArray.map((pujariId) => {
+      return {
+        "pujariId": pujariId,
+        "bookingId": createdBooking['id'],
+        "status": constants.PENDING
       }
+    })
+    const bp = await dbModels.Booking_pendings.bulkCreate(bpArray, { returning: true});
+    // for (let index = 0; index < pujariArray.length; index++) {
+    //   const pujariId = pujariArray[index];
+    //   const bp = await dbModels.Booking_pendings.create({
+    //     pujariId:pujariId,
+    //     bookingId:createdBooking['id'],
+    //     status:'pending'
+    //   });
+
+
+    //   createdBooking['bookingPendings'] = [...createdBooking['bookingPendings'],bp]
+    // }
 
     return createdBooking;
 
@@ -47,7 +57,7 @@ module.exports.getAllBookings = async (event) => {
             as: 'puja'
           }
         ],
-        where:event.queryStringParameters
+        where: event.queryStringParameters
       });
     return bookings;
   } catch (error) {
@@ -110,7 +120,7 @@ module.exports.updateBooking = async (booking) => {
 module.exports.cancelBookng = async (bookingId) => {
   try {
     const isCancelled = await dbModels.Booking
-      .update({ status: 'Cancelled' }, { where: { id: bookingId } });
+      .update({ status:  constants.CANCELLED}, { where: { id: bookingId } });
     return isCancelled
   } catch (error) {
     throw error
