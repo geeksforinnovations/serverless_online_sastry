@@ -4,22 +4,22 @@ var validator = require('validator');
 
 module.exports = (sequelize, DataTypes) => {
   const Booking = sequelize.define('Booking', {
-    bookingId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      field: "id",
-      primaryKey: true,
-      autoIncrement: true,
-      validate: {
-        notNull: {
-          msg: "Puja can't be null or empty"
-        },
-        isInt: {
-          msg: "Enter valid value for puja."
-        },
-        min: 1
-      }
-    },
+    // bookingId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   field: "id",
+    //   primaryKey: true,
+    //   autoIncrement: true,
+    //   validate: {
+    //     notNull: {
+    //       msg: "Puja can't be null or empty"
+    //     },
+    //     isInt: {
+    //       msg: "Enter valid value for puja."
+    //     },
+    //     min: 1
+    //   }
+    // },
 
     date: {
       type: DataTypes.DATE,
@@ -135,18 +135,17 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
 
-    created_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: getDate(),
-      validate: {
-        notNull: {
-          msg: "created_date can't be empty."
-        }
-      }
+    customerName:{
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariType can't be empty."
+      //   }
+      // }
     },
-
-    created_by: {
+    
+    email:{
       type: DataTypes.STRING,
       allowNull: true,
       // validate: {
@@ -156,18 +155,7 @@ module.exports = (sequelize, DataTypes) => {
       // }
     },
 
-    updated_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: getDate(),
-      validate: {
-        notNull: {
-          msg: "updated_date can't be empty."
-        }
-      }
-    },
-
-    Last_updated_by: {
+    phone:{
       type: DataTypes.STRING,
       allowNull: true,
       // validate: {
@@ -176,8 +164,50 @@ module.exports = (sequelize, DataTypes) => {
       //   }
       // }
     },
+    
+    
+    createdDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: getDate(),
+      validate: {
+          notNull: {
+              msg: "created_date can't be empty."
+          }
+      }
+  },
 
+  createdBy: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariType can't be empty."
+      //   }
+      // }
+  },
 
+  updatedDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: getDate(),
+      validate: {
+          notNull: {
+              msg: "updated_date can't be empty."
+          }
+      }
+  },
+
+  lastUpdatedBy: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariType can't be empty."
+      //   }
+      // }
+  }
+  
   }, { freezeTableName: true });
   Booking.associate = function (models) {
     // associations can be defined here

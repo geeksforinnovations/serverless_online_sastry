@@ -53,9 +53,9 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    pujaType: {
+    type: {
       type: DataTypes.ENUM,
-     values: ['Offline', 'Online', 'Both'],
+      values: ['Offline', 'Online', 'Both'],
       allowNull: false,
       validate: {
         notNull: {
@@ -83,16 +83,81 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    created_by: {
-      type: DataTypes.STRING,
-      allowNull: true
+    status: {
+      type: DataTypes.ENUM,
+      values: ['active', 'inactive'],
+      allowNull: false,
+      defaultValue: 'active',
+      validate: {
+          notNull: {
+              msg: "Type can't be null."
+          },
+          customValidator(value) {
+              var types = ['active', 'inactive']
+              if (!types.includes(value)) {
+                  throw new Error("Enter valid value for status.");
+              }
+          }
+      }
   },
+    createdDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: getDate(),
+      validate: {
+        notNull: {
+          msg: "created_date can't be empty."
+        }
+      }
+    },
+
+    createdBy: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariType can't be empty."
+      //   }
+      // }
+    },
+
+    updatedDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: getDate(),
+      validate: {
+        notNull: {
+          msg: "updated_date can't be empty."
+        }
+      }
+    },
+
+    lastUpdatedBy: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariType can't be empty."
+      //   }
+      // }
+    },
 
   }, {});
   Puja.associate = function (models) {
     Puja.hasMany(models.PujaLanguages);
-   // Puja.hasMany(models.Booking);
+    // Puja.hasMany(models.Booking);
   };
   return Puja;
 };
 
+function getDate() {
+  var date;
+  date = new Date();
+  date = date.getUTCFullYear() + '-' +
+      ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
+      ('00' + date.getUTCDate()).slice(-2) + ' ' +
+      ('00' + date.getUTCHours()).slice(-2) + ':' +
+      ('00' + date.getUTCMinutes()).slice(-2) + ':' +
+      ('00' + date.getUTCSeconds()).slice(-2);
+  return date;
+}

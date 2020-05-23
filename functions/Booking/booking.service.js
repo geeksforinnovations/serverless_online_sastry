@@ -10,9 +10,22 @@ module.exports.createBooking = async (booking) => {
         languageId: booking.languageId, userId: booking.userId,
         pujaStartDate: booking.pujaStartDate, pujaEndDate: booking.pujaEndDate,
         pujaId: booking.pujaId,
-        pujaType: booking.pujaType, created_date: booking.created_date, created_by: booking.created_by, updated_date: booking.updated_date,
-        Last_updated_by: booking.Last_updated_by
+        pujaType: booking.pujaType, createdDate: booking.createdDate, createdBy: booking.createdBy, updatedDate: booking.updatedDate,
+        lastUpdatedBy: booking.lastUpdatedBy,customerName: booking.customerName,email: booking.email,
+        phone: booking.phone
       });
+      let pujariArray = booking['pujariArray'];
+      createdBooking['bookingPendings'] = [];
+      for (let index = 0; index < pujariArray.length; index++) {
+        const pujariId = pujariArray[index];
+        const bp = await dbModels.Booking_pendings.create({
+          pujariId:pujariId,
+          bookingId:createdBooking['id'],
+          status:'pending'
+        });
+        createdBooking['bookingPendings'] = [...createdBooking['bookingPendings'],bp]
+      }
+
     return createdBooking;
 
   } catch (error) {
@@ -84,7 +97,7 @@ module.exports.updateBooking = async (booking) => {
       // status: booking.status
     }
     const updatedBooking = await dbModels.Booking
-      .update(bookingDetails, { where: { id: booking.id } });
+      .update(booking, { where: { id: booking.id } });
 
 
     return updatedBooking

@@ -3,18 +3,18 @@ var validator = require('validator');
 
 module.exports = (sequelize, DataTypes) => {
     var Pujari = sequelize.define('Pujari', {
-        PujariId: {
-            field: 'id',
-            type: DataTypes.NUMBER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-            validate: {
-                notNull: {
-                    msg: "id can't be empty."
-                }
-            }
-        },
+        // PujariId: {
+        //     field: 'id',
+        //     type: DataTypes.NUMBER,
+        //     allowNull: false,
+        //     primaryKey: true,
+        //     autoIncrement: true,
+        //     validate: {
+        //         notNull: {
+        //             msg: "id can't be empty."
+        //         }
+        //     }
+        // },
 
         firstName: {
             type: DataTypes.STRING,
@@ -86,7 +86,7 @@ module.exports = (sequelize, DataTypes) => {
             // }
         },
 
-        pujariType: {
+        type: {
             type: DataTypes.STRING,
             allowNull: true,
             // validate: {
@@ -116,7 +116,7 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
 
-        pujariTimeZone: {
+        timeZone: {
             type: DataTypes.STRING,
             allowNull: true,
             // validate: {
@@ -125,24 +125,25 @@ module.exports = (sequelize, DataTypes) => {
             //   }
             // }
         },
-        pujariActive: {
+        status: {
             type: DataTypes.ENUM,
-           values: ['accepted', 'requested', 'denied','inActive'],
+            values: ['accepted', 'requested', 'denied', 'inactive'],
             allowNull: false,
+            defaultValue: 'requested',
             validate: {
-              notNull: {
-                msg: "Type can't be null."
-              },
-              customValidator(value) {
-                var types = ['accepted', 'requested', 'denied','inActive']
-                if (!types.includes(value)) {
-                  throw new Error("Enter valid value for pujariActive.");
+                notNull: {
+                    msg: "status can't be null."
+                },
+                customValidator(value) {
+                    var types = ['accepted', 'requested', 'denied', 'inactive']
+                    if (!types.includes(value)) {
+                        throw new Error("Enter valid value for status.");
+                    }
                 }
-              }
             }
-          },
+        },
 
-        created_date: {
+        createdDate: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: getDate(),
@@ -153,7 +154,7 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
 
-        created_by: {
+        createdBy: {
             type: DataTypes.STRING,
             allowNull: true,
             // validate: {
@@ -163,7 +164,7 @@ module.exports = (sequelize, DataTypes) => {
             // }
         },
 
-        updated_date: {
+        updatedDate: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: getDate(),
@@ -174,7 +175,7 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
 
-        Last_updated_by: {
+        lastUpdatedBy: {
             type: DataTypes.STRING,
             allowNull: true,
             // validate: {
@@ -192,13 +193,30 @@ module.exports = (sequelize, DataTypes) => {
             //   }
             // }
         },
+        rating: {
+            type: DataTypes.NUMBER,
+            allowNull: true,
+            // validate: {
+            //     notNull: {
+            //         msg: "id can't be empty."
+            //     }
+            // }
+        },
+        experience: {
+            type: DataTypes.NUMBER,
+            allowNull: true,
+            // validate: {
+            //     notNull: {
+            //         msg: "id can't be empty."
+            //     }
+            // }
+        },
 
     }, { freezeTableName: true });
     Pujari.associate = function (models) {
-        // associations can be defined here
-        // Pujari.belongsTo(models.Pujari);
+        Pujari.hasMany(models.PujariLanguages);
     };
-    Pujari.removeAttribute('PujariId');
+    // Pujari.removeAttribute('PujariId');
     return Pujari;
 };
 

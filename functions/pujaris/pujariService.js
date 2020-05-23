@@ -9,10 +9,11 @@ module.exports.createPujari = async (pujari) => {
         id: pujari.id, firstName: pujari.firstName, lastName: pujari.lastName,
         middleName: pujari.middleName, description: pujari.description,
         contactNo: pujari.contactNo, address1: pujari.address1,
-        address2: pujari.address2, pujariType: pujari.pujariType,
-        city: pujari.city, country: pujari.country, pujariTimeZone: pujari.pujariTimeZone,
-        pujariActive: pujari.pujariActive, created_date: pujari.created_date, created_by: pujari.created_by,
-        updated_date: pujari.updated_date, Last_updated_by: pujari.Last_updated_by,imageId:pujari.imageId
+        address2: pujari.address2, type: pujari.type,
+        city: pujari.city, country: pujari.country, timeZone: pujari.timeZone,
+        status: pujari.status, createdDate: pujari.createdDate, createdBy: pujari.createdBy,
+        updatedDate: pujari.updatedDate, lastUpdatedBy: pujari.lastUpdatedBy, imageId: pujari.imageId,
+        rating: pujari.rating, experience: pujari.experience
       });
     return createdPujari;
 
@@ -26,15 +27,23 @@ module.exports.getAllPujaris = async () => {
     const pujari = await dbModels.Pujari
       .findAll({
         attributes: [
-          `id`, `firstName`, `lastName`, `middleName`, `description`, `contactNo`, `address1`, `address2`, `pujariType`, `city`, `country`, `pujariTimeZone`, `pujariActive`, `created_date`, `created_by`, `updated_date`, `Last_updated_by`,`imageId`
-        ]
-        // include: [
-        //   {
-        //     model: dbModels.Pujari,
-        //     required: true,
-        //     // as: 'Pujari'
-        //   }
-        // ]
+          `id`, `firstName`, `lastName`, `description`, `contactNo`, `type`, `city`, `country`, `timeZone`, `status`,`imageId`,`rating`,`experience`
+        ],
+        include: [
+          {
+              model: dbModels.PujariLanguages,
+              attributes: ['languageId'],
+              required: true,
+              include: [
+                  {
+                      model: dbModels.Languages,
+                      attributes: ['name'],
+                      required: true,
+
+                  }],
+          }
+      ],
+      where:{"status":"accepted"}
       });
     return pujari;
   } catch (error) {
@@ -45,37 +54,38 @@ module.exports.getAllPujaris = async () => {
 module.exports.getPujari = async (id) => {
   try {
     return await dbModels.Pujari.findOne({
-        where: { id: id },
+      where: { id: id },
     });
-} catch (error) {
+  } catch (error) {
     console.error('unable to get by id', error)
     throw error
 
-}
+  }
 }
 
 // sample payload
 //   {
 //     "pujariActive": 0
 // }
-module.exports.updatePujari = async (pujariId, pujariData) => {
+module.exports.updatePujari = async (pujariId, pujari) => {
   try {
-    const pujari = await dbModels.Pujari
+    const pujariData = await dbModels.Pujari
       .update({
-        pujariActive: pujariData.pujariActive,
-        firstName: pujariData.firstName, description: pujariData.description,
-        contactNo: pujariData.contactNo, address1: pujariData.address1,
-        address2: pujariData.address2, pujariDataType: pujariData.pujariDataType,
-        city: pujariData.city, country: pujariData.country, pujariDataTimeZone: pujariData.pujariDataTimeZone,
-        updated_date: pujariData.updated_date, Last_updated_by: pujariData.Last_updated_by
-
+        firstName: pujari.firstName, lastName: pujari.lastName,
+        middleName: pujari.middleName, description: pujari.description,
+        contactNo: pujari.contactNo, address1: pujari.address1,
+        address2: pujari.address2, type: pujari.type,
+        city: pujari.city, country: pujari.country, timeZone: pujari.timeZone,
+        status: pujari.status, createdDate: pujari.createdDate, createdBy: pujari.createdBy,
+        updatedDate: pujari.updatedDate, lastUpdatedBy: pujari.lastUpdatedBy, imageId: pujari.imageId,
+        rating: pujari.rating, experience: pujari.experience
       },
         {
           where: {
             id: pujariId
           }
         });
-    return pujari;
+    return pujariData;
   } catch (error) {
     throw error
   }

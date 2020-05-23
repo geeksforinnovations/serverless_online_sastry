@@ -5,6 +5,9 @@ module.exports.getAllPujas = async function () {
     try {
         return await dbModels.Pujas
             .findAll({
+                attributes: [
+                    `id`, `name`, `description`, `about`, `timeInHrs`, `cost`, `requiredThings`, `type`, `imageId`                 
+                ],
                 include: [
                     {
                         model: dbModels.PujaLanguages,
@@ -18,7 +21,8 @@ module.exports.getAllPujas = async function () {
 
                             }],
                     }
-                ]
+                ],
+                where:{"status":"active"}
             });
     } catch (error) {
         console.error("unable to fetch pujas", error)
