@@ -5,22 +5,12 @@ var constants = require('../utils/constants')
 
 module.exports = (sequelize, DataTypes) => {
   const Booking = sequelize.define('Booking', {
-    // bookingId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   field: "id",
-    //   primaryKey: true,
-    //   autoIncrement: true,
-    //   validate: {
-    //     notNull: {
-    //       msg: "Puja can't be null or empty"
-    //     },
-    //     isInt: {
-    //       msg: "Enter valid value for puja."
-    //     },
-    //     min: 1
-    //   }
-    // },
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
 
     date: {
       type: DataTypes.DATE,

@@ -4,21 +4,11 @@ var validator = require('validator');
 var constants = require('../utils/constants');
 module.exports = (Sequelize, DataTypes) => {
   const Booking_Pendings = Sequelize.define('Booking_pendings', {
-    bookingPendingId: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: "id",
       primaryKey: true,
       autoIncrement: true,
-      validate: {
-        notNull: {
-          msg: "Puja can't be null or empty"
-        },
-        isInt: {
-          msg: "Enter valid value for puja."
-        },
-        min: 1
-      }
     },
 
     pujariId: {

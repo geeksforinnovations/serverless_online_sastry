@@ -1,6 +1,8 @@
 "use strict";
+var constants = require('../utils/constants');
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    var PujaStatus = constants.PujaStatus
     return queryInterface.createTable("Pujas", {
       id: {
         allowNull: false,
@@ -32,6 +34,10 @@ module.exports = {
       },
       cost: {
         type: Sequelize.FLOAT,
+      },
+      status: {
+        type: Sequelize.ENUM,
+        values: [PujaStatus.ACTIVE, PujaStatus.INACTIVE],
       },
     });
   },

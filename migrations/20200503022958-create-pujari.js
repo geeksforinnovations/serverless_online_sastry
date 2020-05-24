@@ -33,7 +33,7 @@ module.exports = {
       address2: {
         type: Sequelize.STRING(100)
       },
-      pujariType: {
+      type: {
         type: Sequelize.STRING(50)
       },
       city: {
@@ -45,7 +45,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
-      pujariTimeZone: {
+      timeZone: {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
@@ -53,6 +53,17 @@ module.exports = {
         type: Sequelize.ENUM,
         values: ['accepted', 'requested', 'denied','inActive'],
       },
+      imageId: {
+        type: Sequelize.STRING
+      },
+      rating: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      experience: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      }
     });
   },
   down: (queryInterface, Sequelize) => {

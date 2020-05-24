@@ -1,4 +1,8 @@
 module.exports = {
+    PujaStatus: {
+        ACTIVE: 'active',
+        INACTIVE: 'inactive',
+    },
     PujariStatus: {
         ACTIVE: 'active',
         INACTIVE: 'inactive',

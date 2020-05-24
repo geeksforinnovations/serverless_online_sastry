@@ -70,6 +70,15 @@ module.exports = {
         type:   Sequelize.ENUM,
         values: ['Offline', 'Online']
       },
+      customerName: {
+        type: Sequelize.STRING,
+      },
+      email: {
+        type: Sequelize.STRING,
+      },
+      phone: {
+        type: Sequelize.STRING
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
