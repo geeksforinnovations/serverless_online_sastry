@@ -164,52 +164,6 @@ module.exports = (sequelize, DataTypes) => {
       //   }
       // }
     },
-
-
-    createdDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
-      validate: {
-        notNull: {
-          msg: "created_date can't be empty."
-        }
-      }
-    },
-
-    createdBy: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      // validate: {
-      //   notNull: {
-      //     msg: "pujariType can't be empty."
-      //   }
-      // }
-    },
-
-    updatedDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: sequelize.literal(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-      ),
-      validate: {
-        notNull: {
-          msg: "updated_date can't be empty."
-        }
-      }
-    },
-
-    lastUpdatedBy: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      // validate: {
-      //   notNull: {
-      //     msg: "pujariType can't be empty."
-      //   }
-      // }
-    }
-
   }, { freezeTableName: true });
   Booking.associate = function (models) {
     // associations can be defined here

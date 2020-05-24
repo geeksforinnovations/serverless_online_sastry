@@ -53,21 +53,6 @@ module.exports = {
         type: Sequelize.ENUM,
         values: ['accepted', 'requested', 'denied','inActive'],
       },
-      createdDate: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      },
-      createdBy: {
-        type: Sequelize.STRING(50)
-      },
-      updatedDate: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-      },
-      LastUpdatedBy: {
-        type: Sequelize.STRING(50)
-      }
     });
   },
   down: (queryInterface, Sequelize) => {

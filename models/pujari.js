@@ -116,40 +116,6 @@ module.exports = (Sequelize, DataTypes) => {
                 }
             }
         },
-
-        createdDate: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-            validate: {
-                notNull: {
-                    msg: "created_date can't be empty."
-                }
-            }
-        },
-
-        createdBy: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-
-        updatedDate: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.literal(
-                "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-            ),
-            validate: {
-                notNull: {
-                    msg: "updated_date can't be empty."
-                }
-            }
-        },
-
-        lastUpdatedBy: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         imageId: {
             type: DataTypes.STRING,
             allowNull: true,

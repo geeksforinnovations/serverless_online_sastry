@@ -90,42 +90,8 @@ module.exports = (Sequelize, DataTypes) => {
             }
         },
 
-        createdDate: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-            validate: {
-                notNull: {
-                    msg: "created_date can't be empty."
-                }
-            }
-        },
 
-        created_by: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-
-        updatedDate: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.literal(
-                "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-            ),
-            validate: {
-                notNull: {
-                    msg: "updated_date can't be empty."
-                }
-            }
-        },
-
-        Last_updated_by: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-
-
-    }, { freezeTableName: true });
+    }, { freezeTableName: true});
     Pujari_reviews.associate = function (models) {
         // associations can be defined here
         // Pujari.belongsTo(models.Pujari);

@@ -87,28 +87,7 @@ module.exports = (Sequelize, DataTypes) => {
       // }
     },
 
-    updated_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: Sequelize.literal(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-      ),
-      validate: {
-        notNull: {
-          msg: "updated_date can't be empty."
-        }
-      }
-    },
 
-    Last_updated_by: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      // validate: {
-      //   notNull: {
-      //     msg: "pujariType can't be empty."
-      //   }
-      // }
-    },
 
 
   }, { freezeTableName: true });

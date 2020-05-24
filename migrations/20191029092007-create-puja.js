@@ -33,23 +33,6 @@ module.exports = {
       cost: {
         type: Sequelize.FLOAT,
       },
-      createdDate: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      },
-      createdBy: {
-        type: Sequelize.STRING(50),
-      },
-      updatedDate: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal(
-          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-        ),
-      },
-      lastUpdatedBy: {
-        type: Sequelize.STRING(50),
-      },
     });
   },
   down: (queryInterface, Sequelize) => {
