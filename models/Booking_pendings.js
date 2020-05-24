@@ -66,26 +66,6 @@ module.exports = (Sequelize, DataTypes) => {
       }
     },
 
-    created_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      validate: {
-        notNull: {
-          msg: "created_date can't be empty."
-        }
-      }
-    },
-
-    created_by: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      // validate: {
-      //   notNull: {
-      //     msg: "pujariType can't be empty."
-      //   }
-      // }
-    },
 
 
 

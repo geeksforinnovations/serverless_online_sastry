@@ -12,18 +12,18 @@ module.exports = {
         type: Sequelize.STRING,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       about: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       timeInHrs: {
         type: Sequelize.FLOAT,
       },
       requiredThings: {
-        type: Sequelize.JSON,
+        type: Sequelize.TEXT,
       },
-      pujaType: {
+      type: {
         type: Sequelize.ENUM,
         values: ["Offline", "Online", "Both"],
       },

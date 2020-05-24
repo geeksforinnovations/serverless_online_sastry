@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(
-      "PujaLanguage",
+      "PujaLanguages",
       [
         {
           pujaId:1,
