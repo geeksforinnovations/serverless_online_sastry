@@ -3,3 +3,5 @@ node_modules
 jspm_packages
 .env
 .serverless
+# config
+config/config.json
