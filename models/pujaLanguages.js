@@ -2,7 +2,7 @@
 var validator = require('validator');
 
 module.exports = (sequelize, DataTypes) => {
-  var PujaLanguage = sequelize.define('PujaLanguage', {
+  var PujaLanguage = sequelize.define('PujaLanguages', {
     pujaid: {
       type: DataTypes.NUMBER,
       allowNull: false,
@@ -22,10 +22,12 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     
-  }, {freezeTableName: true});
+  }, 
+  {freezeTableName: true},
+    );
   PujaLanguage.associate = function (models) {
     // associations can be defined here
-   PujaLanguage.belongsTo(models.Language);
+   PujaLanguage.belongsTo(models.Languages);
   };
   return PujaLanguage;
 };

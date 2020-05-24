@@ -33,7 +33,7 @@ module.exports = {
       address2: {
         type: Sequelize.STRING(100)
       },
-      pujariType: {
+      type: {
         type: Sequelize.STRING(50)
       },
       city: {
@@ -45,28 +45,24 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
-      pujariTimeZone: {
+      timeZone: {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
-      pujariActive: {
-        type: Sequelize.BOOLEAN
+      status: {
+        type: Sequelize.ENUM,
+        values: ['accepted', 'requested', 'denied','inActive'],
       },
-      created_date: {
+      imageId: {
+        type: Sequelize.STRING
+      },
+      rating: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        type: Sequelize.INTEGER
       },
-      created_by: {
+      experience: {
         allowNull: false,
-        type: Sequelize.STRING(50)
-      },
-      updated_date: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-      },
-      Last_updated_by: {
-        type: Sequelize.STRING(50)
+        type: Sequelize.INTEGER
       }
     });
   },

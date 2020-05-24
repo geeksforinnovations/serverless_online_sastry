@@ -3,7 +3,7 @@ var validator = require('validator');
 
 
 module.exports = (sequelize, DataTypes) => {
-  var Language = sequelize.define('Language', {
+  var Language = sequelize.define('Languages', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {freezeTableName: true});
   Language.associate = function (models) {
     // associations can be defined here
-   Language.hasMany(models.PujaLanguage);
+   Language.hasMany(models.PujaLanguages);
   };
   return Language;
 };

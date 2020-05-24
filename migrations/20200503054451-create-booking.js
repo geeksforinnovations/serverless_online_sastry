@@ -70,21 +70,14 @@ module.exports = {
         type:   Sequelize.ENUM,
         values: ['Offline', 'Online']
       },
-      createdsta_date: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      customerName: {
+        type: Sequelize.STRING,
       },
-      created_by: {
-        allowNull: false,
-        type: Sequelize.STRING(50)
+      email: {
+        type: Sequelize.STRING,
       },
-      updated_date: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-      },
-      Last_updated_by: {
-        type: Sequelize.STRING(50)
+      phone: {
+        type: Sequelize.STRING
       }
     });
   },

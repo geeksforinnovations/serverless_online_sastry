@@ -1,17 +1,35 @@
 const dbModels = require('../../models')
-
+var constants = require('../../utils/constants');
 
 
 module.exports.createBooking = async (booking) => {
   try {
     const createdBooking = await dbModels.Booking
       .create({
-        pujaId: booking.pujaId, languageId: booking.languageId, name: booking.name,
-        phoneNumber: booking.phoneNumber, bookingDate: booking.bookingDate,
-        addressLine1: booking.addressLine1, addressLine2: booking.addressLine2,
-        requirePujaType: booking.requirePujaType, videoCallUserName: booking.videoCallUserName,
-        status: booking.status
+        date: booking.date, 
+        status: booking.status,
+        languageId: booking.languageId, 
+        userId: booking.userId,
+        pujaStartDate: booking.pujaStartDate, 
+        pujaEndDate: booking.pujaEndDate,
+        pujaId: booking.pujaId,
+        pujaType: booking.pujaType, 
+        customerName: booking.customerName, 
+        email: booking.email,
+        phone: booking.phone
       });
+    let pujariArray = booking['pujariArray'];
+    createdBooking['bookingPendings'] = [];
+
+    let bpArray = pujariArray.map((pujariId) => {
+      return {
+        "pujariId": pujariId,
+        "bookingId": createdBooking['id'],
+        "status": constants.PENDING
+      }
+    })
+    const bp = await dbModels.Booking_pendings.bulkCreate(bpArray, { returning: true});
+
     return createdBooking;
 
   } catch (error) {
@@ -20,17 +38,20 @@ module.exports.createBooking = async (booking) => {
 }
 
 
-module.exports.getAllBookings = async () => {
+module.exports.getAllBookings = async (event) => {
+  queryParams = event.queryStringParameters;
+  // validateQueryParams()
   try {
     const bookings = await dbModels.Booking
       .findAll({
         include: [
           {
-            model: dbModels.Puja,
+            model: dbModels.Pujas,
             required: true,
             as: 'puja'
           }
-        ]
+        ],
+        where: event.queryStringParameters
       });
     return bookings;
   } catch (error) {
@@ -46,7 +67,7 @@ module.exports.getBookingsByPhoneNumber = async (phoneNumber) => {
       },
       include: [
         {
-          model: dbModels.Puja,
+          model: dbModels.Pujas,
           required: true,
           attributes: ['id', 'name', 'timeInHrs', 'pujaType', 'cost', 'imageId'],
           as: "puja"
@@ -80,7 +101,7 @@ module.exports.updateBooking = async (booking) => {
       // status: booking.status
     }
     const updatedBooking = await dbModels.Booking
-      .update(bookingDetails, { where: { id: booking.id } });
+      .update(booking, { where: { id: booking.id } });
 
 
     return updatedBooking
@@ -93,7 +114,7 @@ module.exports.updateBooking = async (booking) => {
 module.exports.cancelBookng = async (bookingId) => {
   try {
     const isCancelled = await dbModels.Booking
-      .update({ status: 'Cancelled' }, { where: { id: bookingId } });
+      .update({ status:  constants.CANCELLED}, { where: { id: bookingId } });
     return isCancelled
   } catch (error) {
     throw error

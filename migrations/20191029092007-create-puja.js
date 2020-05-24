@@ -1,6 +1,8 @@
 "use strict";
+var constants = require('../utils/constants');
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    var PujaStatus = constants.PujaStatus
     return queryInterface.createTable("Pujas", {
       id: {
         allowNull: false,
@@ -12,41 +14,30 @@ module.exports = {
         type: Sequelize.STRING,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       about: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       timeInHrs: {
         type: Sequelize.FLOAT,
       },
       requiredThings: {
-        type: Sequelize.JSON,
+        type: Sequelize.TEXT,
       },
-      pujaType: {
+      type: {
         type: Sequelize.ENUM,
         values: ["Offline", "Online", "Both"],
       },
       imageId: {
         type: Sequelize.STRING
       },
-      created_date: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      cost: {
+        type: Sequelize.FLOAT,
       },
-      created_by: {
-        allowNull: false,
-        type: Sequelize.STRING(50),
-      },
-      updated_date: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal(
-          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-        ),
-      },
-      Last_updated_by: {
-        type: Sequelize.STRING(50),
+      status: {
+        type: Sequelize.ENUM,
+        values: [PujaStatus.ACTIVE, PujaStatus.INACTIVE],
       },
     });
   },
