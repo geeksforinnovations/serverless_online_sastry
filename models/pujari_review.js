@@ -1,25 +1,18 @@
 'use strict';
 var validator = require('validator');
 
-module.exports = (sequelize, DataTypes) => {
-    var Pujari_reviews = sequelize.define('Pujari_reviews', {
-        Pujari_reviewsId: {
-            field: 'id',
+module.exports = (Sequelize, DataTypes) => {
+    var Pujari_reviews = Sequelize.define('Pujari_reviews', {
+        id: {
             type: DataTypes.NUMBER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true,
-            validate: {
-                notNull: {
-                    msg: "id can't be empty."
-                }
-            }
+            autoIncrement: true
         },
 
         reviewDate: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: getDate(),
             validate: {
                 notNull: {
                     msg: "reviewDate can't be empty."
@@ -111,11 +104,6 @@ module.exports = (sequelize, DataTypes) => {
         created_by: {
             type: DataTypes.STRING,
             allowNull: true,
-            // validate: {
-            //   notNull: {
-            //     msg: "pujariType can't be empty."
-            //   }
-            // }
         },
 
         updatedDate: {
@@ -134,11 +122,6 @@ module.exports = (sequelize, DataTypes) => {
         Last_updated_by: {
             type: DataTypes.STRING,
             allowNull: true,
-            // validate: {
-            //   notNull: {
-            //     msg: "pujariType can't be empty."
-            //   }
-            // }
         },
 
 

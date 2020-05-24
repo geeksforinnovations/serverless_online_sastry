@@ -6,11 +6,16 @@ module.exports.createBooking = async (booking) => {
   try {
     const createdBooking = await dbModels.Booking
       .create({
-        date: booking.date, status: booking.status,
-        languageId: booking.languageId, userId: booking.userId,
-        pujaStartDate: booking.pujaStartDate, pujaEndDate: booking.pujaEndDate,
+        date: booking.date, 
+        status: booking.status,
+        languageId: booking.languageId, 
+        userId: booking.userId,
+        pujaStartDate: booking.pujaStartDate, 
+        pujaEndDate: booking.pujaEndDate,
         pujaId: booking.pujaId,
-        pujaType: booking.pujaType, customerName: booking.customerName, email: booking.email,
+        pujaType: booking.pujaType, 
+        customerName: booking.customerName, 
+        email: booking.email,
         phone: booking.phone
       });
     let pujariArray = booking['pujariArray'];
@@ -24,17 +29,6 @@ module.exports.createBooking = async (booking) => {
       }
     })
     const bp = await dbModels.Booking_pendings.bulkCreate(bpArray, { returning: true});
-    // for (let index = 0; index < pujariArray.length; index++) {
-    //   const pujariId = pujariArray[index];
-    //   const bp = await dbModels.Booking_pendings.create({
-    //     pujariId:pujariId,
-    //     bookingId:createdBooking['id'],
-    //     status:'pending'
-    //   });
-
-
-    //   createdBooking['bookingPendings'] = [...createdBooking['bookingPendings'],bp]
-    // }
 
     return createdBooking;
 

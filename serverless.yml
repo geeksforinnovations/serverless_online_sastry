@@ -24,23 +24,23 @@ custom:
   USERNAME: master
   PASSWORD: password
   VPC_CIDR: 10
-  MYSQL:
-    HOST:
-      Fn::GetAtt: [MySqlRDSInstance, Endpoint.Address]
-    PORT:
-      Fn::GetAtt: [MySqlRDSInstance, Endpoint.Port]
+  # MYSQL:
+  #   HOST:
+  #     Fn::GetAtt: [MySqlRDSInstance, Endpoint.Address]
+  #   PORT:
+  #     Fn::GetAtt: [MySqlRDSInstance, Endpoint.Port]
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
-iamRoleStatements:
-  - Effect: "Allow"
-    Action:
-      - ses:SendEmail
-      - ses:SendRawEmail
-    Resource:
-      - "arn:aws:ses:${self:provider.region}:*:*"
+# iamRoleStatements:
+#   - Effect: "Allow"
+#     Action:
+#       - ses:SendEmail
+#       - ses:SendRawEmail
+#     Resource:
+#       - "arn:aws:ses:${self:provider.region}:*:*"
 
 # you can define service wide environment variables here
 #  environment:

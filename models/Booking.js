@@ -25,7 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     date: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: getDate(),
       validate: {
         notNull: {
           msg: "date can't be empty."
@@ -170,7 +169,7 @@ module.exports = (sequelize, DataTypes) => {
     createdDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
       validate: {
         notNull: {
           msg: "created_date can't be empty."
@@ -191,7 +190,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: Sequelize.literal(
+      defaultValue: sequelize.literal(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
       ),
       validate: {

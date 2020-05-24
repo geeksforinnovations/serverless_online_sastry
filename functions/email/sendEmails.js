@@ -1,13 +1,13 @@
 const emailService = require('./mail.service')
 const helpers = require("../../utils/helpers");
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = async (event, context, callback) => {
   try {
     const emailBody = JSON.parse(event.body);
-    const sgMail = require('@sendgrid/mail');
-    console.log(event.body);
 
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+   
     if (emailBody.type == "poojariConfirmed") {
       const msg = {
         to: emailBody.to,

@@ -2,8 +2,8 @@
 var validator = require('validator');
 var pujaLanguages = require('./pujaLanguages');
 var constants = require('../utils/constants');
-module.exports = (sequelize, DataTypes) => {
-  var Puja = sequelize.define('Pujas', {
+module.exports = (Sequelize, DataTypes) => {
+  var Puja = Sequelize.define('Pujas', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -61,12 +61,12 @@ module.exports = (sequelize, DataTypes) => {
         notNull: {
           msg: "Type can't be null."
         },
-        customValidator(value) {
-          var types = [constants.OFFLINE, constants.ONLINE, constants.BOTH],
-          if (!types.includes(value)) {
-            throw new Error("Enter valid value for type.");
-          }
-        }
+        // customValidator(value) {
+        //   var types = [constants.OFFLINE, constants.ONLINE, constants.BOTH],
+        //   if (!types.includes(value)) {
+        //     throw new Error("Enter valid value for type.");
+        //   }
+        // }
       }
     },
     imageId: {
@@ -152,14 +152,3 @@ module.exports = (sequelize, DataTypes) => {
   return Puja;
 };
 
-function getDate() {
-  var date;
-  date = new Date();
-  date = date.getUTCFullYear() + '-' +
-    ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-    ('00' + date.getUTCDate()).slice(-2) + ' ' +
-    ('00' + date.getUTCHours()).slice(-2) + ':' +
-    ('00' + date.getUTCMinutes()).slice(-2) + ':' +
-    ('00' + date.getUTCSeconds()).slice(-2);
-  return date;
-}

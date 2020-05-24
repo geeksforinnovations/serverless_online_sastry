@@ -1,20 +1,14 @@
 'use strict';
 var validator = require('validator');
 
-module.exports = (sequelize, DataTypes) => {
-    var PujariLanguages = sequelize.define('PujariLanguages', {
-        // PujariLanguagesId: {
-        //     field: 'id',
-        //     type: DataTypes.NUMBER,
-        //     allowNull: false,
-        //     primaryKey: true,
-        //     autoIncrement: true,
-        //     validate: {
-        //         notNull: {
-        //             msg: "id can't be empty."
-        //         }
-        //     }
-        // },
+module.exports = (Sequelize, DataTypes) => {
+    var PujariLanguages = Sequelize.define('PujariLanguages', {
+        id: {
+            type: DataTypes.NUMBER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
+        },
 
         languageId: {
             type: DataTypes.NUMBER,
@@ -50,11 +44,6 @@ module.exports = (sequelize, DataTypes) => {
         createdBy: {
             type: DataTypes.STRING,
             allowNull: true,
-            // validate: {
-            //   notNull: {
-            //     msg: "pujariType can't be empty."
-            //   }
-            // }
         },
 
         updatedDate: {
@@ -73,11 +62,6 @@ module.exports = (sequelize, DataTypes) => {
         lastUpdatedBy: {
             type: DataTypes.STRING,
             allowNull: true,
-            // validate: {
-            //   notNull: {
-            //     msg: "pujariType can't be empty."
-            //   }
-            // }
         }
 
     }, { freezeTableName: true });

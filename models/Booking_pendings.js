@@ -2,8 +2,8 @@
 const puja = require('./puja')
 var validator = require('validator');
 var constants = require('../utils/constants');
-module.exports = (sequelize, DataTypes) => {
-  const Booking_Pendings = sequelize.define('Booking_pendings', {
+module.exports = (Sequelize, DataTypes) => {
+  const Booking_Pendings = Sequelize.define('Booking_pendings', {
     bookingPendingId: {
       type: DataTypes.INTEGER,
       allowNull: false,

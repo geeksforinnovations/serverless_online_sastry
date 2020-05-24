@@ -6,9 +6,9 @@ module.exports.createBooking_pendings = async (booking_pendings) => {
   try {
     const createdBooking_pending = await dbModels.Booking_pendings
       .create({
-        pujariId: booking_pendings.pujariId, bookingId: booking_pendings.bookingId,
-        status: booking_pendings.status,created_date: booking_pendings.created_date, created_by: booking_pendings.created_by, updated_date: booking_pendings.updated_date,
-        Last_updated_by: booking_pendings.Last_updated_by
+        pujariId: booking_pendings.pujariId, 
+        bookingId: booking_pendings.bookingId,
+        status: booking_pendings.status
       });
     return createdBooking_pending;
 
@@ -50,9 +50,9 @@ module.exports.updateBooking_Pendings = async (id,booking_pendings) => {
     // }; 
     const updatedBooking_pending = await dbModels.Booking_pendings
       .update({
-        pujariId: booking_pendings.pujariId, bookingId: booking_pendings.bookingId,
-        status: booking_pendings.status,created_date: booking_pendings.created_date, created_by: booking_pendings.created_by, updated_date: booking_pendings.updated_date,
-        Last_updated_by: booking_pendings.Last_updated_by
+        pujariId: booking_pendings.pujariId, 
+        bookingId: booking_pendings.bookingId,
+        status: booking_pendings.status
       },
         {
           where: {
