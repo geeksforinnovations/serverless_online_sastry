@@ -1,8 +1,8 @@
 'use strict';
 var validator = require('validator');
 var constants = require('../utils/constants');
-module.exports = (Sequelize, DataTypes) => {
-    var Pujari = Sequelize.define('Pujari', {
+module.exports = (sequelize, DataTypes) => {
+    var Pujari = sequelize.define('Pujari', {
         id: {
             type: DataTypes.NUMBER,
             allowNull: false,
@@ -115,6 +115,50 @@ module.exports = (Sequelize, DataTypes) => {
                     }
                 }
             }
+        },
+
+        createdDate: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+            validate: {
+                notNull: {
+                    msg: "created_date can't be empty."
+                }
+            }
+        },
+
+        createdBy: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            // validate: {
+            //   notNull: {
+            //     msg: "pujariType can't be empty."
+            //   }
+            // }
+        },
+
+        updatedDate: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal(
+                "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+            ),
+            validate: {
+                notNull: {
+                    msg: "updated_date can't be empty."
+                }
+            }
+        },
+
+        lastUpdatedBy: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            // validate: {
+            //   notNull: {
+            //     msg: "pujariType can't be empty."
+            //   }
+            // }
         },
         imageId: {
             type: DataTypes.STRING,

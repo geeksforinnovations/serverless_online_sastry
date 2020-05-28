@@ -1,8 +1,8 @@
 'use strict';
 var validator = require('validator');
 
-module.exports = (Sequelize, DataTypes) => {
-    var Pujari_reviews = Sequelize.define('Pujari_reviews', {
+module.exports = (sequelize, DataTypes) => {
+    var Pujari_reviews = sequelize.define('Pujari_reviews', {
         id: {
             type: DataTypes.NUMBER,
             allowNull: false,
@@ -13,6 +13,7 @@ module.exports = (Sequelize, DataTypes) => {
         reviewDate: {
             type: DataTypes.DATE,
             allowNull: false,
+            defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
             validate: {
                 notNull: {
                     msg: "reviewDate can't be empty."
@@ -88,6 +89,50 @@ module.exports = (Sequelize, DataTypes) => {
                     msg: "bookingId can't be empty."
                 }
             }
+        },
+
+        createdDate: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+            validate: {
+                notNull: {
+                    msg: "created_date can't be empty."
+                }
+            }
+        },
+
+        created_by: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            // validate: {
+            //   notNull: {
+            //     msg: "pujariType can't be empty."
+            //   }
+            // }
+        },
+
+        updatedDate: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal(
+                "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+            ),
+            validate: {
+                notNull: {
+                    msg: "updated_date can't be empty."
+                }
+            }
+        },
+
+        Last_updated_by: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            // validate: {
+            //   notNull: {
+            //     msg: "pujariType can't be empty."
+            //   }
+            // }
         },
 
 

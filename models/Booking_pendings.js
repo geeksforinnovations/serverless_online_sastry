@@ -56,10 +56,6 @@ module.exports = (Sequelize, DataTypes) => {
       }
     },
 
-
-
-
-
   }, { freezeTableName: true });
   Booking_Pendings.associate = function (models) {
     // associations can be defined here

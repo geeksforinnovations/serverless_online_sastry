@@ -2,8 +2,8 @@
 var validator = require('validator');
 var pujaLanguages = require('./pujaLanguages');
 var constants = require('../utils/constants');
-module.exports = (Sequelize, DataTypes) => {
-  var Puja = Sequelize.define('Pujas', {
+module.exports = (sequelize, DataTypes) => {
+  var Puja = sequelize.define('Pujas', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -61,12 +61,12 @@ module.exports = (Sequelize, DataTypes) => {
         notNull: {
           msg: "Type can't be null."
         },
-        // customValidator(value) {
-        //   var types = [constants.OFFLINE, constants.ONLINE, constants.BOTH],
-        //   if (!types.includes(value)) {
-        //     throw new Error("Enter valid value for type.");
-        //   }
-        // }
+        customValidator(value) {
+          var types = [constants.OFFLINE, constants.ONLINE, constants.BOTH]
+          if (!types.includes(value)) {
+            throw new Error("Enter valid value for type.");
+          }
+        }
       }
     },
     imageId: {
@@ -100,7 +100,49 @@ module.exports = (Sequelize, DataTypes) => {
         }
       }
     },
-   
+    createdDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+      validate: {
+        notNull: {
+          msg: "created_date can't be empty."
+        }
+      }
+    },
+
+    createdBy: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariType can't be empty."
+      //   }
+      // }
+    },
+
+    updatedDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: sequelize.literal(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+      ),
+      validate: {
+        notNull: {
+          msg: "updated_date can't be empty."
+        }
+      }
+    },
+
+    lastUpdatedBy: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate: {
+      //   notNull: {
+      //     msg: "pujariType can't be empty."
+      //   }
+      // }
+    },
 
   }, {
   });
@@ -110,4 +152,3 @@ module.exports = (Sequelize, DataTypes) => {
   };
   return Puja;
 };
-
