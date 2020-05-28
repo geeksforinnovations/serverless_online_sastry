@@ -1,8 +1,8 @@
 'use strict';
 var validator = require('validator');
 var constants = require('../utils/constants');
-module.exports = (Sequelize, DataTypes) => {
-    var Pujari = Sequelize.define('Pujari', {
+module.exports = (sequelize, DataTypes) => {
+    var Pujari = sequelize.define('Pujari', {
         id: {
             type: DataTypes.NUMBER,
             allowNull: false,

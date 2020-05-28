@@ -19,6 +19,9 @@ module.exports = {
       middleName: {
         type: Sequelize.STRING
       },
+      type: {
+        type: Sequelize.STRING(50)
+      },
       description: {
         type: Sequelize.STRING(2000)
       },
@@ -33,12 +36,11 @@ module.exports = {
       address2: {
         type: Sequelize.STRING(100)
       },
-      type: {
+      city: {
+        allowNull: true,
         type: Sequelize.STRING(50)
       },
-      city: {
-        allowNull: false,
-
+      state:{
         type: Sequelize.STRING(50)
       },
       country: {
@@ -46,7 +48,7 @@ module.exports = {
         type: Sequelize.STRING(50)
       },
       timeZone: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(50)
       },
       status: {
@@ -57,13 +59,17 @@ module.exports = {
         type: Sequelize.STRING
       },
       rating: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       experience: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER
-      }
+      },
+      email: {
+        allowNull: false,
+        type: Sequelize.STRING(75)
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
