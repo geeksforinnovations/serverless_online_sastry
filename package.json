@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^7.1.1",
+    "axios": "^0.19.2",
     "mysql2": "^2.0.0",
     "sequelize": "^5.21.1",
     "sequelize-test-helpers": "^1.2.2",

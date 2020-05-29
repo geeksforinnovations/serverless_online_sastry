@@ -77,12 +77,22 @@ module.exports = (sequelize, DataTypes) => {
 
         city: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "city can't be empty."
-                }
-            }
+            allowNull: true,
+            // validate: {
+            //     notNull: {
+            //         msg: "city can't be empty."
+            //     }
+            // }
+        },
+
+        state: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            // validate: {
+            //     notNull: {
+            //         msg: "city can't be empty."
+            //     }
+            // }
         },
 
         country: {
@@ -126,6 +136,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         experience: {
             type: DataTypes.NUMBER,
+            allowNull: true,
+        },
+        email: {
+            type: DataTypes.STRING,
             allowNull: true,
         },
 
