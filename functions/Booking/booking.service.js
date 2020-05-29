@@ -1,32 +1,35 @@
 const dbModels = require('../../models')
 var constants = require('../../utils/constants');
+var emails = require('../../utils/emails');
 
 
 module.exports.createBooking = async (booking) => {
   try {
-    const createdBooking = await dbModels.Booking
-      .create({
-        date: booking.date,
-        status: booking.status,
-        languageId: booking.languageId,
-        userId: booking.userId,
-        pujaStartDate: booking.pujaStartDate,
-        pujaEndDate: booking.pujaEndDate,
-        pujaId: booking.pujaId,
-        pujaType: booking.pujaType,
-        customerName: booking.customerName,
-        email: booking.email,
-        phone: booking.phone
-      });
-    let pujariArray = booking['pujariArray'];
+    // // const createdBooking = await dbModels.Booking
+    // //   .create({
+    // //     date: booking.date,
+    // //     status: booking.status,
+    // //     languageId: booking.languageId,
+    // //     userId: booking.userId,
+    // //     pujaStartDate: booking.pujaStartDate,
+    // //     pujaEndDate: booking.pujaEndDate,
+    // //     pujaId: booking.pujaId,
+    // //     pujaType: booking.pujaType,
+    // //     customerName: booking.customerName,
+    // //     email: booking.email,
+    // //     phone: booking.phone
+    // //   });
+    // let pujariArray = booking['pujariArray'];
     let bp = await createBooking_Pendings(pujariArray,createdBooking);
+    await sendEmails(pujariArray, "");
+    console.log(createdBooking);
     return createdBooking;
   } catch (error) {
     throw error
   }
 }
 
-var createBooking_Pendings = async (pujariArray,createdBooking) => {
+var createBooking_Pendings = async (pujariArray, createdBooking) => {
   let bpArray = pujariArray.map((pujariId) => {
     return {
       "pujariId": pujariId,
@@ -35,6 +38,17 @@ var createBooking_Pendings = async (pujariArray,createdBooking) => {
     }
   })
   return await dbModels.Booking_pendings.bulkCreate(bpArray, { returning: true });
+}
+
+var sendEmails = async (pujariArray, booking) => {
+  let pujariEmailIdArray = async () => {
+    return Promise.all(pujariArray.map(async (pujariId) => {
+      let pujari = await dbModels.Pujari.findOne({ where: { id: pujariId } });
+      return pujari.email;
+    }));
+  }
+  await emails.sendBookingReceivedEmailToPujari(await pujariEmailIdArray(),1);
+  await emails.sendBookingAckToUser(booking);
 }
 
 module.exports.getAllBookings = async (event) => {
