@@ -48,7 +48,7 @@ module.exports = {
       },
       pujariId:{
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: 'Pujari',
           key: 'id', 
