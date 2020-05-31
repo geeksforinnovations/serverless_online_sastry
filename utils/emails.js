@@ -4,7 +4,7 @@ module.exports.sendBookingReceivedEmailToPujari = async (pujariEmailIdArray, boo
     let bccArray = pujariEmailIdArray.map((emailId) => {
         return { "email": emailId }
     });
-    const emailData = {
+    const poojariEmailData = {
         "to": process.env.EMAIL_SERVICES_ADMIN_EMAIL,
         "from": process.env.EMAIL_SERVICES_FROM_EMAIL,
         "cc": "vinay.ananthu@gmail.com",
@@ -14,8 +14,24 @@ module.exports.sendBookingReceivedEmailToPujari = async (pujariEmailIdArray, boo
             "parm1": bookingId
         }
     }
-    console.log(emailData);
-    await postToEmailService(emailData);
+    console.log(poojariEmailData);
+    await postToEmailService(poojariEmailData);
+}
+
+module.exports.sendBookingConfirmationToCustomer = async (booking) => {
+
+    const poojariEmailData = {
+        "to": booking.email,
+        "from": process.env.EMAIL_SERVICES_FROM_EMAIL,
+        "cc": process.env.EMAIL_SERVICES_ADMIN_EMAIL,
+        "templateId": "d-3d362feadf224179807b3b2298957106",
+        "data": {
+            "parm1": booking.email,
+            "parm2": booking.customerName
+        }
+    }
+    console.log(poojariEmailData);
+    await postToEmailService(poojariEmailData);
 }
 
 
