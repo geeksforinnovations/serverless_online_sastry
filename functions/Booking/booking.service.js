@@ -5,23 +5,23 @@ var emails = require('../../utils/emails');
 
 module.exports.createBooking = async (booking) => {
   try {
-    // // const createdBooking = await dbModels.Booking
-    // //   .create({
-    // //     date: booking.date,
-    // //     status: booking.status,
-    // //     languageId: booking.languageId,
-    // //     userId: booking.userId,
-    // //     pujaStartDate: booking.pujaStartDate,
-    // //     pujaEndDate: booking.pujaEndDate,
-    // //     pujaId: booking.pujaId,
-    // //     pujaType: booking.pujaType,
-    // //     customerName: booking.customerName,
-    // //     email: booking.email,
-    // //     phone: booking.phone
-    // //   });
-    // let pujariArray = booking['pujariArray'];
+    const createdBooking = await dbModels.Booking
+      .create({
+        date: booking.date,
+        status: booking.status,
+        languageId: booking.languageId,
+        userId: booking.userId,
+        pujaStartDate: booking.pujaStartDate,
+        pujaEndDate: booking.pujaEndDate,
+        pujaId: booking.pujaId,
+        pujaType: booking.pujaType,
+        customerName: booking.customerName,
+        email: booking.email,
+        phone: booking.phone
+      });
+    let pujariArray = booking['pujariArray'];
     let bp = await createBooking_Pendings(pujariArray,createdBooking);
-    await sendEmails(pujariArray, "");
+    await sendEmails(pujariArray,booking);
     console.log(createdBooking);
     return createdBooking;
   } catch (error) {
@@ -47,8 +47,8 @@ var sendEmails = async (pujariArray, booking) => {
       return pujari.email;
     }));
   }
+  await emails.sendBookingConfirmationToCustomer(booking);
   await emails.sendBookingReceivedEmailToPujari(await pujariEmailIdArray(),1);
-  await emails.sendBookingAckToUser(booking);
 }
 
 module.exports.getAllBookings = async (event) => {
