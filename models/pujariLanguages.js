@@ -1,8 +1,8 @@
 'use strict';
 var validator = require('validator');
 
-module.exports = (Sequelize, DataTypes) => {
-    var PujariLanguages = Sequelize.define('PujariLanguages', {
+module.exports = (sequelize, DataTypes) => {
+    var PujariLanguages = sequelize.define('PujariLanguages', {
         id: {
             type: DataTypes.NUMBER,
             allowNull: false,

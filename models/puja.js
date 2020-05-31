@@ -2,8 +2,8 @@
 var validator = require('validator');
 var pujaLanguages = require('./pujaLanguages');
 var constants = require('../utils/constants');
-module.exports = (Sequelize, DataTypes) => {
-  var Puja = Sequelize.define('Pujas', {
+module.exports = (sequelize, DataTypes) => {
+  var Puja = sequelize.define('Pujas', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -61,12 +61,12 @@ module.exports = (Sequelize, DataTypes) => {
         notNull: {
           msg: "Type can't be null."
         },
-        // customValidator(value) {
-        //   var types = [constants.OFFLINE, constants.ONLINE, constants.BOTH],
-        //   if (!types.includes(value)) {
-        //     throw new Error("Enter valid value for type.");
-        //   }
-        // }
+        customValidator(value) {
+          var types = [constants.OFFLINE, constants.ONLINE, constants.BOTH]
+          if (!types.includes(value)) {
+            throw new Error("Enter valid value for type.");
+          }
+        }
       }
     },
     imageId: {
@@ -100,8 +100,6 @@ module.exports = (Sequelize, DataTypes) => {
         }
       }
     },
-   
-
   }, {
   });
   Puja.associate = function (models) {
@@ -110,4 +108,3 @@ module.exports = (Sequelize, DataTypes) => {
   };
   return Puja;
 };
-

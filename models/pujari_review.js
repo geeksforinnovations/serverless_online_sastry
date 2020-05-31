@@ -1,8 +1,8 @@
 'use strict';
 var validator = require('validator');
 
-module.exports = (Sequelize, DataTypes) => {
-    var Pujari_reviews = Sequelize.define('Pujari_reviews', {
+module.exports = (sequelize, DataTypes) => {
+    var Pujari_reviews = sequelize.define('Pujari_reviews', {
         id: {
             type: DataTypes.NUMBER,
             allowNull: false,
@@ -13,6 +13,7 @@ module.exports = (Sequelize, DataTypes) => {
         reviewDate: {
             type: DataTypes.DATE,
             allowNull: false,
+            defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
             validate: {
                 notNull: {
                     msg: "reviewDate can't be empty."
@@ -89,8 +90,6 @@ module.exports = (Sequelize, DataTypes) => {
                 }
             }
         },
-
-
     }, { freezeTableName: true});
     Pujari_reviews.associate = function (models) {
         // associations can be defined here

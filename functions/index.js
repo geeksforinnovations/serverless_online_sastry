@@ -27,7 +27,6 @@ const getAllAppSettings = require('./appSettings/getAllAppSettings')
 const updateAppSettings = require('./appSettings/updateAppSettings')
 const deleteAppSettings = require('./appSettings/deleteAppSettings')
 const getAppSettingsValueByKey = require('./appSettings/getAppSettingsValueByKey')
-const send = require('./email/send')
 const createPujari = require('./pujaris/createPujari')
 const getAllPujaris = require('./pujaris/getAllPujaris')
 const getPujari= require('./pujaris/getPujari')
@@ -68,7 +67,6 @@ module.exports = {
     updateAppSettings: updateAppSettings,
     deleteAppSettings: deleteAppSettings,
     getAppSettingsValueByKey: getAppSettingsValueByKey,
-    sendEmail: send,
     sendEmails: sendEmails,
     getAllPujaris: getAllPujaris,
     createPujari: createPujari,
