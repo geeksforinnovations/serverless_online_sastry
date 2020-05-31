@@ -196,14 +196,14 @@ functions:
     events:
       - http:
           method: get
-          path: veify/{number}
+          path: verify/{number}
           cors: true
   verifyOtp:
     handler: functions/index.verifyOtp
     events:
       - http:
           method: post
-          path: veify
+          path: verify
           cors: true
   createAppSettings:
     handler: functions/index.createAppSettings

@@ -1,27 +1,33 @@
 const dbModels = require('../../models')
 var constants = require('../../utils/constants');
 var emails = require('../../utils/emails');
+var stripeService = require('../transactions/stripe.service')
 
 
-module.exports.createBooking = async (booking) => {
+module.exports.createBooking = async (booking, token) => {
   try {
+    const selectedPuja = await dbModels.Pujas.findOne({ where: { id: booking.pujaId } });
+    const description = "charges for " + selectedPuja.name + ".";
+    const payment = await stripeService.pay(token, selectedPuja.cost, description )
+    console.log('payment', payment);
+    
     const createdBooking = await dbModels.Booking
       .create({
         date: booking.date,
         status: booking.status,
         languageId: booking.languageId,
-        userId: booking.userId,
+        userId: booking.userId || 1,
         pujaStartDate: booking.pujaStartDate,
         pujaEndDate: booking.pujaEndDate,
         pujaId: booking.pujaId,
-        pujaType: booking.pujaType,
+        pujaType: booking.pujaType || 'Online',
         customerName: booking.customerName,
         email: booking.email,
         phone: booking.phone
       });
-    let pujariArray = booking['pujariArray'];
+    let pujariArray = booking['selectedPujaries'] || [];
     let bp = await createBooking_Pendings(pujariArray,createdBooking);
-    await sendEmails(pujariArray,booking);
+     sendEmails(pujariArray,booking).then()
     console.log(createdBooking);
     return createdBooking;
   } catch (error) {
