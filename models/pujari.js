@@ -1,8 +1,8 @@
 'use strict';
 var validator = require('validator');
 var constants = require('../utils/constants');
-module.exports = (Sequelize, DataTypes) => {
-    var Pujari = Sequelize.define('Pujari', {
+module.exports = (sequelize, DataTypes) => {
+    var Pujari = sequelize.define('Pujari', {
         id: {
             type: DataTypes.NUMBER,
             allowNull: false,
@@ -77,12 +77,22 @@ module.exports = (Sequelize, DataTypes) => {
 
         city: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "city can't be empty."
-                }
-            }
+            allowNull: true,
+            // validate: {
+            //     notNull: {
+            //         msg: "city can't be empty."
+            //     }
+            // }
+        },
+
+        state: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            // validate: {
+            //     notNull: {
+            //         msg: "city can't be empty."
+            //     }
+            // }
         },
 
         country: {
@@ -126,6 +136,10 @@ module.exports = (Sequelize, DataTypes) => {
         },
         experience: {
             type: DataTypes.NUMBER,
+            allowNull: true,
+        },
+        email: {
+            type: DataTypes.STRING,
             allowNull: true,
         },
 

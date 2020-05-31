@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     date: {
       type: DataTypes.DATE,
       allowNull: false,
+      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
       validate: {
         notNull: {
           msg: "date can't be empty."

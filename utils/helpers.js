@@ -1,3 +1,4 @@
+
 function calculateCost(storage) {
     const rate = storage <= 10
         ? 4
