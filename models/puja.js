@@ -1,9 +1,9 @@
 'use strict';
 var validator = require('validator');
 var pujaLanguages = require('./pujaLanguages');
-
+var constants = require('../utils/constants');
 module.exports = (sequelize, DataTypes) => {
-  var Puja = sequelize.define('Puja', {
+  var Puja = sequelize.define('Pujas', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -53,16 +53,16 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    pujaType: {
+    type: {
       type: DataTypes.ENUM,
-     values: ['Offline', 'Online', 'Both'],
+      values: [constants.OFFLINE, constants.ONLINE, constants.BOTH],
       allowNull: false,
       validate: {
         notNull: {
           msg: "Type can't be null."
         },
         customValidator(value) {
-          var types = ['Offline', 'Online', 'Both']
+          var types = [constants.OFFLINE, constants.ONLINE, constants.BOTH]
           if (!types.includes(value)) {
             throw new Error("Enter valid value for type.");
           }
@@ -83,12 +83,28 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-
-  }, {});
+    status: {
+      type: DataTypes.ENUM,
+      values: [constants.ACTIVE, constants.INACTIVE],
+      allowNull: false,
+      defaultValue: 'active',
+      validate: {
+        notNull: {
+          msg: "Type can't be null."
+        },
+        customValidator(value) {
+          var types = [constants.ACTIVE, constants.INACTIVE]
+          if (!types.includes(value)) {
+            throw new Error("Enter valid value for status.");
+          }
+        }
+      }
+    },
+  }, {
+  });
   Puja.associate = function (models) {
-    Puja.hasMany(models.PujaLanguage);
-   // Puja.hasMany(models.Booking);
+    Puja.hasMany(models.PujaLanguages);
+    // Puja.hasMany(models.Booking);
   };
   return Puja;
 };
-

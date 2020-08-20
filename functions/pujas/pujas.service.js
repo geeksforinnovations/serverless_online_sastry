@@ -3,22 +3,26 @@ const dbModels = require('../../models')
 // get app pujas irrespective of any filters/ we can remove this in future
 module.exports.getAllPujas = async function () {
     try {
-        return await dbModels.Puja
+        return await dbModels.Pujas
             .findAll({
+                attributes: [
+                    `id`, `name`, `description`, `about`, `timeInHrs`, `cost`, `requiredThings`, `type`, `imageId`                 
+                ],
                 include: [
                     {
-                        model: dbModels.PujaLanguage,
+                        model: dbModels.PujaLanguages,
                         attributes: ['LanguageId'],
                         required: true,
                         include: [
                             {
-                                model: dbModels.Language,
+                                model: dbModels.Languages,
                                 attributes: ['name'],
                                 required: true,
 
                             }],
                     }
-                ]
+                ],
+                where:{"status":"active"}
             });
     } catch (error) {
         console.error("unable to fetch pujas", error)
@@ -32,7 +36,7 @@ module.exports.getAllPujas = async function () {
 // language
 module.exports.searchPujas = async function (queryParams) {
     try {
-        return await dbModels.Puja.findAll({
+        return await dbModels.Pujas.findAll({
             required: true,
             where:
             {
@@ -47,12 +51,12 @@ module.exports.searchPujas = async function (queryParams) {
             },
             include: [
                 {
-                    model: dbModels.PujaLanguage,
+                    model: dbModels.PujaLanguages,
                     attributes: ['LanguageId'],
                     required: true,
                     include: [
                         {
-                            model: dbModels.Language,
+                            model: dbModels.Languages,
                             attributes: ['name'],
                             required: true,
                             where:
@@ -75,16 +79,16 @@ module.exports.searchPujas = async function (queryParams) {
 // get puja by ID
 module.exports.getById = async function (id) {
     try {
-        return await dbModels.Puja.findOne({
+        return await dbModels.Pujas.findOne({
             where: { id: id },
             include: [
                 {
-                    model: dbModels.PujaLanguage,
+                    model: dbModels.PujaLanguages,
                     attributes: ['LanguageId'],
                     required: true,
                     include: [
                         {
-                            model: dbModels.Language,
+                            model: dbModels.Languages,
                             attributes: ['name'],
                             required: true,
                         }
@@ -102,7 +106,7 @@ module.exports.getById = async function (id) {
 //  creating a puja along with languages assossiation
 module.exports.createPuja = async function (puja, languages) {
     try {
-        return await dbModels.Puja
+        return await dbModels.Pujas
             .create(puja,
                 {
                     include: [{
@@ -119,7 +123,7 @@ module.exports.createPuja = async function (puja, languages) {
 // permenant delete of record
 module.exports.deletePuja = async function (id) {
     try {
-        return await dbModels.Puja
+        return await dbModels.Pujas
             .destroy({ where: { id: id } });
     } catch (error) {
         console.error("unable to delete puja", error)
@@ -131,7 +135,7 @@ module.exports.deletePuja = async function (id) {
 // update puja with complete attributes/ TODO: need to change only passed paras
 module.exports.updatePuja = async function (puja) {
     try {
-        return await dbModels.Puja
+        return await dbModels.Pujas
             .updateAttributes({
                 name: puja.name,
                 description: puja.description,

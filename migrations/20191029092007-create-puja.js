@@ -1,41 +1,47 @@
-'use strict';
+"use strict";
+var constants = require('../utils/constants');
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Pujas', {
+    var PujaStatus = constants.PujaStatus
+    return queryInterface.createTable("Pujas", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
+        type: Sequelize.STRING,
+      },
+      description: {
+        type: Sequelize.TEXT,
+      },
+      about: {
+        type: Sequelize.TEXT,
+      },
+      timeInHrs: {
+        type: Sequelize.FLOAT,
+      },
+      requiredThings: {
+        type: Sequelize.TEXT,
+      },
+      type: {
+        type: Sequelize.ENUM,
+        values: ["Offline", "Online", "Both"],
+      },
+      imageId: {
         type: Sequelize.STRING
       },
-      description:{
-        type: Sequelize.STRING
+      cost: {
+        type: Sequelize.FLOAT,
       },
-      about:{
-        type: Sequelize.STRING
+      status: {
+        type: Sequelize.ENUM,
+        values: [PujaStatus.ACTIVE, PujaStatus.INACTIVE],
       },
-      timeInHrs:{
-        type: Sequelize.FLOAT
-      },
-      requiredThings:{
-        type: Sequelize.JSON
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-      }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Pujas');
-  }
+    return queryInterface.dropTable("Pujas");
+  },
 };

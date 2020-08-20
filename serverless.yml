@@ -1,5 +1,5 @@
 app: geeks4innovations
-service: online-sastry # NOTE: update this with your service name
+service: dev-release-online-sastry # NOTE: update this with your service name
 
 plugins:
   - serverless-dotenv-plugin
@@ -24,37 +24,36 @@ custom:
   USERNAME: master
   PASSWORD: password
   VPC_CIDR: 10
-  MYSQL:
-    HOST:
-      Fn::GetAtt: [MySqlRDSInstance, Endpoint.Address]
-    PORT:
-      Fn::GetAtt: [MySqlRDSInstance, Endpoint.Port]
+  # MYSQL:
+  #   HOST:
+  #     Fn::GetAtt: [MySqlRDSInstance, Endpoint.Address]
+  #   PORT:
+  #     Fn::GetAtt: [MySqlRDSInstance, Endpoint.Port]
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
-iamRoleStatements:
- - Effect: "Allow"
-   Action:
-    - ses:SendEmail
-    - ses:SendRawEmail
-   Resource: 
-    - "arn:aws:ses:${self:provider.region}:*:*"
+# iamRoleStatements:
+#   - Effect: "Allow"
+#     Action:
+#       - ses:SendEmail
+#       - ses:SendRawEmail
+#     Resource:
+#       - "arn:aws:ses:${self:provider.region}:*:*"
 
 # you can define service wide environment variables here
 #  environment:
-   
 
 # you can add packaging information here
 package:
- exclude:
-   - __tests__/**
-   - migrations/**
-   - mocks/**
-   - seeders/**
-   - tests/**
-   - readme.md
+  exclude:
+    - __tests__/**
+    - migrations/**
+    - mocks/**
+    - seeders/**
+    - tests/**
+    - readme.md
 environment:
   stripeSecretKey: ${env:STRIPE_SECRET_KEY}
   MYSQL_HOST: ${self:custom.MYSQL.HOST}
@@ -62,8 +61,6 @@ environment:
   DB_NAME: ${self:custom.DB_NAME}
   USERNAME: ${self:custom.USERNAME}
   PASSWORD: ${self:custom.PASSWORD}
-
-
 
 functions:
   hello:
@@ -199,14 +196,14 @@ functions:
     events:
       - http:
           method: get
-          path: veify/{number}
+          path: verify/{number}
           cors: true
   verifyOtp:
     handler: functions/index.verifyOtp
     events:
       - http:
           method: post
-          path: veify
+          path: verify
           cors: true
   createAppSettings:
     handler: functions/index.createAppSettings
@@ -264,30 +261,95 @@ functions:
           method: get
           path: sendEmail
           cors: true
-          
-          
-  
-
-
+  sendEmails:
+    handler: functions/index.sendEmails
+    events:
+      - http:
+          method: post
+          path: sendEmails
+          cors: true
+  getAllPujaris:
+    handler: functions/index.getAllPujaris
+    events:
+    - http:
+          method: get
+          path: pujaris
+          cors: true
+  getPujari:
+    handler: functions/index.getPujari
+    events:
+    - http:
+          method: get
+          path: pujari/{id}
+          cors: true
+  createPujari:
+    handler: functions/index.createPujari
+    events:
+    - http:
+          method: post
+          path: pujaris
+          cors: true
+  updatePujari:
+    handler: functions/index.updatePujari
+    events:
+    - http:
+          method: post
+          path: updatePujari/{id}
+          cors: true
+  createPujari_review:
+    handler: functions/index.createPujari_review
+    events:
+    - http:
+          method: post
+          path: pujari_review
+          cors: true
+  getAllPujari_reviews:
+    handler: functions/index.getAllPujari_reviews
+    events:
+    - http:
+          method: get
+          path: pujari_reviews
+          cors: true
+  getAllBooking_pendings:
+    handler: functions/index.getAllBooking_pendings
+    events:
+    - http:
+          method: get
+          path: booking_pendings
+          cors: true
+  createBooking_pendings:
+    handler: functions/index.createBooking_pendings
+    events:
+    - http:
+          method: post
+          path: booking_pendings
+          cors: true
+  updateBooking_pendings:
+    handler: functions/index.updateBooking_Pendings
+    events:
+    - http:
+          method: post
+          path: updateBooking_pendings/{id}
+          cors: true
 # you can add CloudFormation resource templates here
 # Create our resources with separate CloudFormation templates
 resources:
   Resources:
-    ServerlessInternetGateway: ${file(./resources/ServerlessInternetGateway.yml)}
-    ServerlessVPC: ${file(./resources/ServerlessVPC.yml)}
-    ServerlessVPCGA: ${file(./resources/ServerlessVPCGA.yml)}
-    ServerlessSubnetA: ${file(./resources/ServerlessSubnetA.yml)}
-    ServerlessSubnetB: ${file(./resources/ServerlessSubnetB.yml)}
-    ServerlessSubnetC: ${file(./resources/ServerlessSubnetC.yml)}
-    ServerlessSubnetGroup: ${file(./resources/ServerlessSubnetGroup.yml)}
-    ServerlessSecurityGroup: ${file(./resources/ServerlessSecurityGroup.yml)}
-    RouteTablePublic: ${file(./resources/RouteTablePublic.yml)}
-    RoutePublic: ${file(./resources/RoutePublic.yml)}
-    RouteTableAssociationSubnetA: ${file(./resources/RouteTableAssociationSubnetA.yml)}
-    RouteTableAssociationSubnetB: ${file(./resources/RouteTableAssociationSubnetB.yml)}
-    RouteTableAssociationSubnetC: ${file(./resources/RouteTableAssociationSubnetC.yml)}
-    MySqlRDSInstance: ${file(./resources/MySqlRDSInstance.yml)}
-    # s3-bucket: ${file(resources/s3-bucket.yml)}  
+    # ServerlessInternetGateway: ${file(./resources/ServerlessInternetGateway.yml)}
+    # ServerlessVPC: ${file(./resources/ServerlessVPC.yml)}
+    # ServerlessVPCGA: ${file(./resources/ServerlessVPCGA.yml)}
+    # ServerlessSubnetA: ${file(./resources/ServerlessSubnetA.yml)}
+    # ServerlessSubnetB: ${file(./resources/ServerlessSubnetB.yml)}
+    # ServerlessSubnetC: ${file(./resources/ServerlessSubnetC.yml)}
+    # ServerlessSubnetGroup: ${file(./resources/ServerlessSubnetGroup.yml)}
+    # ServerlessSecurityGroup: ${file(./resources/ServerlessSecurityGroup.yml)}
+    # RouteTablePublic: ${file(./resources/RouteTablePublic.yml)}
+    # RoutePublic: ${file(./resources/RoutePublic.yml)}
+    # RouteTableAssociationSubnetA: ${file(./resources/RouteTableAssociationSubnetA.yml)}
+    # RouteTableAssociationSubnetB: ${file(./resources/RouteTableAssociationSubnetB.yml)}
+    # RouteTableAssociationSubnetC: ${file(./resources/RouteTableAssociationSubnetC.yml)}
+    # MySqlRDSInstance: ${file(./resources/MySqlRDSInstance.yml)}
+    # s3-bucket: ${file(resources/s3-bucket.yml)}
     # CognitoAuthRole: ${file(resources/CognitoAuthRole.yml)}
     # CognitoIdentityPool: ${file(resources/CognitoIdentityPool.yml)}
     # CognitoIdentityPoolRoles: ${file(resources/CognitoIdentityPoolRoles.yml)}

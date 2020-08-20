@@ -1,12 +1,12 @@
 
-const service = require('./booking.service')
+const service = require('./pujariService')
 const helpers = require("../../utils/helpers");
 
 module.exports = async (event, context, callback) => {
+
     try {
-        const req = JSON.parse(event.body);
-        console.log("create booking started")
-        const data = await service.createBooking(req.booking, req.token);
+        const pujariId = event.pathParameters.id;
+        const data = await service.getPujari(pujariId);
         return helpers.success({ data: data });
     } catch (error) {
         return helpers.failure({ message: error.message });

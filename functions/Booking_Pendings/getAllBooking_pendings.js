@@ -1,12 +1,11 @@
 
-const service = require('./booking.service')
+const service = require('./booking_pendingsService')
 const helpers = require("../../utils/helpers");
 
 module.exports = async (event, context, callback) => {
+
     try {
-        const req = JSON.parse(event.body);
-        console.log("create booking started")
-        const data = await service.createBooking(req.booking, req.token);
+        const data = await service.getAllBooking_Pendings(event);
         return helpers.success({ data: data });
     } catch (error) {
         return helpers.failure({ message: error.message });
